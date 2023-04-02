@@ -1,5 +1,6 @@
 import 'package:fit_healthy/domain/utils/themes/color_theme.dart';
 import 'package:fit_healthy/ui/login/login_page.dart';
+import 'package:fit_healthy/ui/main/main_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -30,7 +31,8 @@ class MyApp extends StatelessWidget {
               primaryVariant: Palette.green.shade50,
               secondaryVariant: Palette.green.shade50)),
       /*home: const MyHomePage(title: 'fit and Health'),*/
-      home: const LogInPage(),
+      //home: const LogInPage(),
+      home: const MainPage(),
     );
   }
 }
