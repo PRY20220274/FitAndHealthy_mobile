@@ -34,9 +34,9 @@ class StatusTitleTileWidget extends StatelessWidget {
                 alignment: Alignment.centerLeft,
               ),
         const SizedBox(width: 8),
-        const Text(
-          "Estado Físico",
-          style: TextStyle(fontSize: 16),
+        Text(
+          title,
+          style: const TextStyle(fontSize: 18),
         ),
       ],
     );

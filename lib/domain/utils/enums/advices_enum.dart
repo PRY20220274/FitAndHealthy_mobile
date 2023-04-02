@@ -1,0 +1,4 @@
+enum Advices {
+  physical,
+  nutritional,
+}

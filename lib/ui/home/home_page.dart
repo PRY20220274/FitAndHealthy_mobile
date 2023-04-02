@@ -1,4 +1,7 @@
+import 'package:fit_healthy/domain/utils/constants/advices_titles_constant.dart';
+import 'package:fit_healthy/domain/utils/enums/advices_enum.dart';
 import 'package:fit_healthy/domain/utils/enums/status_enum.dart';
+import 'package:fit_healthy/ui/home/widgets/advice_widget.dart';
 import 'package:fit_healthy/ui/home/widgets/profile_widget.dart';
 import 'package:fit_healthy/ui/home/widgets/status_info_tile_widget.dart';
 import 'package:fit_healthy/ui/home/widgets/status_title_tile_widget.dart';
@@ -25,7 +28,7 @@ class HomePage extends StatelessWidget {
             ),
           ),*/
         Padding(
-          padding: const EdgeInsets.only(top: 28, right: 12, left: 12),
+          padding: const EdgeInsets.symmetric(vertical: 28, horizontal: 12),
           child: Column(
             children: [
               const Padding(
@@ -101,7 +104,25 @@ class HomePage extends StatelessWidget {
                     imageNameAsset: "portion.png",
                   ),
                 ],
-              )
+              ),
+              const Padding(
+                padding: EdgeInsets.only(top: 40, bottom: 12),
+                child: Text(
+                  "Recomendaciones del día de hoy",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                ),
+              ),
+              const AdviceWidget(
+                typeAdvice: Advices.physical,
+                description:
+                    "Si bailas o realizas por una hora estarías cumpliendo con 480 MET",
+              ),
+              const AdviceWidget(
+                typeAdvice: Advices.nutritional,
+                description:
+                    "Deberías de reducir el consumo de papa, !Puedes probar con la zanahoria!",
+              ),
+              //const SizedBox(height: 48,)
             ],
           ),
         )
