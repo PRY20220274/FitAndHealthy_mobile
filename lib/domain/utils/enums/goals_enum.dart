@@ -1,0 +1,4 @@
+enum TypeGoal {
+  physical,
+  nutritional,
+}

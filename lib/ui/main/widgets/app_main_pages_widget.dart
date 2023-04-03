@@ -2,6 +2,7 @@
 
 import 'package:fit_healthy/business/shared/navigation_provider.dart';
 import 'package:fit_healthy/domain/utils/themes/color_theme.dart';
+import 'package:fit_healthy/ui/goals/goals_list_page.dart';
 import 'package:fit_healthy/ui/goals/goals_page.dart';
 import 'package:fit_healthy/ui/home/home_page.dart';
 import 'package:flutter/material.dart';
@@ -18,9 +19,7 @@ class AppMainPagesWidget extends StatelessWidget {
       physics:  const NeverScrollableScrollPhysics(),
       children: [
         const GoalsPage(),
-        Container(
-          color: Palette.green.shade50,
-        ),
+        const GoalsListPage(),
          const HomePage(),
         Container(
           color: Palette.green.shade200,
