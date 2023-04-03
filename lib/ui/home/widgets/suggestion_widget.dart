@@ -1,15 +1,16 @@
-import 'package:fit_healthy/domain/utils/constants/advices_titles_constant.dart';
-import 'package:fit_healthy/domain/utils/enums/advices_enum.dart';
+import 'package:fit_healthy/domain/utils/constants/suggestions_titles_constant.dart';
+import 'package:fit_healthy/domain/utils/enums/suggestions_enum.dart';
+import 'package:fit_healthy/domain/utils/themes/color_theme.dart';
 import 'package:flutter/material.dart';
 
-class AdviceWidget extends StatelessWidget {
-  const AdviceWidget({
+class SuggestionWidget extends StatelessWidget {
+  const SuggestionWidget({
     Key? key,
-    required this.typeAdvice,
+    required this.typeSuggestion,
     required this.description,
   }) : super(key: key);
 
-  final Advices typeAdvice;
+  final Suggestions typeSuggestion;
   final String description;
 
   @override
@@ -18,11 +19,11 @@ class AdviceWidget extends StatelessWidget {
       height: 100,
       child: Column(children: [
         Text(
-          advicesTitles[typeAdvice]!,
-          style: const TextStyle(
+          suggestionsTitles[typeSuggestion]!,
+          style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w500,
-            color: Colors.teal,
+            color: Palette.green.shade200,//Colors.teal,
           ),
           textAlign: TextAlign.center,
         ),

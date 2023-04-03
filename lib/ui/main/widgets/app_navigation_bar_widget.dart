@@ -1,5 +1,8 @@
+import 'package:fit_healthy/business/shared/navigation_provider.dart';
+import 'package:fit_healthy/domain/utils/themes/color_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 
 class AppNavigationBarWidget extends StatelessWidget {
@@ -7,12 +10,22 @@ class AppNavigationBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final navigationProvider = Provider.of<NavigationProvider>(context);
+    
+
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
+      currentIndex: navigationProvider.currentPos,
+      onTap: (value) {
+        if (value == navigationProvider.currentPos) return;
+        navigationProvider.currentPos = value;
+      },
       showSelectedLabels: false,
       showUnselectedLabels: false,
-      backgroundColor: Colors.teal,
-      items: [
+      backgroundColor: Palette.green,
+      selectedItemColor: Palette.green.shade50,
+      items: const [
         BottomNavigationBarItem(
           icon: Icon(Icons.track_changes_outlined),
           label: "aaa"

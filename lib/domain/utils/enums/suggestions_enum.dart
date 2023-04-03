@@ -1,4 +1,4 @@
-enum Advices {
+enum Suggestions {
   physical,
   nutritional,
 }

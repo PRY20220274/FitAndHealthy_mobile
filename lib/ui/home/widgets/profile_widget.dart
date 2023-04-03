@@ -1,3 +1,4 @@
+import 'package:fit_healthy/domain/utils/themes/color_theme.dart';
 import 'package:fit_healthy/domain/utils/utils/date_util.dart';
 import 'package:flutter/material.dart';
 
@@ -30,7 +31,7 @@ class ProfileWidget extends StatelessWidget {
           bottom: 0,
           left: 25,
           child: CircleAvatar(
-            backgroundColor: Colors.teal.shade100,
+            backgroundColor: Palette.green.shade50,//Colors.teal.shade100,
             backgroundImage:
                 const AssetImage('assets/images/woman_profile.png'),
             radius: 60,
@@ -40,7 +41,7 @@ class ProfileWidget extends StatelessWidget {
           left: 155,
           bottom: 40,
           child: Text(
-            "Hola, Maria",
+            'Hola, Maria',
             style: TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.w500,

@@ -1,4 +1,5 @@
 import 'package:fit_healthy/domain/utils/enums/status_enum.dart';
+import 'package:fit_healthy/domain/utils/themes/color_theme.dart';
 import 'package:flutter/material.dart';
 
 class PhysicalStatusInfoTileWidget extends StatelessWidget {
@@ -7,12 +8,12 @@ class PhysicalStatusInfoTileWidget extends StatelessWidget {
     required this.title,
     required this.value,
     required this.units,
-    this.imageNameAsset = "404-error.png",
+    this.imageNameAsset = '404-error.png',
     required this.status,
     this.subValue = 0,
-    this.subUnits = "",
-    this.subTitle = "",
-    this.subImageNameAsset = "404-error.png",
+    this.subUnits = '',
+    this.subTitle = '',
+    this.subImageNameAsset = '404-error.png',
   }) : super(key: key);
 
   final String title;
@@ -31,7 +32,7 @@ class PhysicalStatusInfoTileWidget extends StatelessWidget {
       height: 250,
       child: Card(
         //color: BoxFit,//
-        color: Colors.teal.shade50,
+        color: Palette.green.shade50,//Colors.teal.shade50,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
@@ -44,12 +45,12 @@ class PhysicalStatusInfoTileWidget extends StatelessWidget {
                     Text(title),
                     const SizedBox(height: 12),
                     Image.asset(
-                      "assets/images/$imageNameAsset",
+                      'assets/images/$imageNameAsset',
                       height: 50,
                     ),
                     const SizedBox(height: 12),
                     Text(
-                      "${value.toInt()} $units",
+                      '${value.toInt()} $units',
                       style: const TextStyle(fontSize: 18),
                     ),
                     const SizedBox(height: 12),
@@ -59,17 +60,17 @@ class PhysicalStatusInfoTileWidget extends StatelessWidget {
                     ),
                     //const SizedBox(height: 4),
                     Image.asset(
-                      "assets/images/$subImageNameAsset",
+                      'assets/images/$subImageNameAsset',
                       height: 30,
                     ),
                     //const SizedBox(height: 4),
                     Text(
-                      "$subValue $subUnits",
+                      '$subValue $subUnits',
                       style: const TextStyle(fontSize: 12),
                     ),
                     const SizedBox(height: 4),
                     const Text(
-                      "Actualización cada 5h",
+                      'Actualización cada 5h',
                       style: TextStyle(fontSize: 12),
                     ),
                   ],
@@ -80,17 +81,17 @@ class PhysicalStatusInfoTileWidget extends StatelessWidget {
                     Text(title),
                     const SizedBox(height: 12),
                     Image.asset(
-                      "assets/images/$imageNameAsset",
+                      'assets/images/$imageNameAsset',
                       height: 60,
                     ),
                     const SizedBox(height: 12),
                     Text(
-                      "${status == PhysicalStatus.cardio ? value.toInt() : value.toStringAsFixed(1)} $units",
+                      '${status == PhysicalStatus.cardio ? value.toInt() : value.toStringAsFixed(1)} $units',
                       style: const TextStyle(fontSize: 18),
                     ),
                     const SizedBox(height: 12),
                     const Text(
-                      "Actualización cada 5h",
+                      'Actualización cada 5h',
                       style: TextStyle(fontSize: 12),
                     ),
                   ],
@@ -106,7 +107,7 @@ class NutritionalStatusInfoTileWidget extends StatelessWidget {
     Key? key,
     required this.title,
     required this.description,
-    this.imageNameAsset = "404-error.png",
+    this.imageNameAsset = '404-error.png',
   }) : super(key: key);
 
   final String title;
@@ -119,7 +120,7 @@ class NutritionalStatusInfoTileWidget extends StatelessWidget {
       height: 250,
       child: Card(
         //color: BoxFit,//
-        color: Colors.teal.shade50,
+        color: Palette.green.shade50,//Colors.teal.shade50,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
@@ -131,7 +132,7 @@ class NutritionalStatusInfoTileWidget extends StatelessWidget {
                     Text(title),
                     const SizedBox(height: 12),
                     Image.asset(
-                      "assets/images/$imageNameAsset",
+                      'assets/images/$imageNameAsset',
                       height: 60,
                     ),
                     const SizedBox(height: 12),
@@ -143,7 +144,7 @@ class NutritionalStatusInfoTileWidget extends StatelessWidget {
                     ),
                     const SizedBox(height: 12),
                     const Text(
-                      "Completar formulario",
+                      'Completar formulario',
                       style: TextStyle(fontSize: 12),
                     ),
                   ],

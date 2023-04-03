@@ -5,7 +5,7 @@ class StatusTitleTileWidget extends StatelessWidget {
     Key? key,
     required this.title,
     this.icon,
-    this.imageNameAsset = "404-error.png",
+    this.imageNameAsset = '404-error.png',
   }) : super(key: key);
 
   final String title;
@@ -27,7 +27,7 @@ class StatusTitleTileWidget extends StatelessWidget {
               )
             :
             Image.asset(
-                "assets/images/$imageNameAsset",
+                'assets/images/$imageNameAsset',
                 width: 32,
                 height: 32,
                 fit: BoxFit.contain,
