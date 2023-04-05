@@ -36,12 +36,12 @@ class MyApp extends StatelessWidget {
                 onError: Colors.white,
                 onPrimary: Colors.black,
                 onSecondary: Colors.black,
-                onSurface: Colors.black,
-                primaryVariant: Palette.green.shade50,
-                secondaryVariant: Palette.green.shade50)),
+                onSurface: Colors.black,)),
+                //primaryVariant: Palette.green.shade50,
+                //secondaryVariant: Palette.green.shade50)),
         /*home: const MyHomePage(title: 'fit and Health'),*/
-        //home: const LogInPage(),
-        home: const MainPage(),
+        home: const LogInPage(),
+        //home: const MainPage(),
       ),
     );
   }
