@@ -25,6 +25,10 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+            inputDecorationTheme: const InputDecorationTheme(
+                enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.white),
+            )),
             colorScheme: ColorScheme(
                 primary: Palette.green.shade200,
                 secondary: Palette.green.shade50,
@@ -42,26 +46,6 @@ class MyApp extends StatelessWidget {
         /*home: const MyHomePage(title: 'fit and Health'),*/
         home: const LogInPage(),
         //home: const MainPage(),
-      ),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
       ),
     );
   }
