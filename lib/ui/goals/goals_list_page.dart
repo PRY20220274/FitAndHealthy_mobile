@@ -18,7 +18,6 @@ class GoalsListPage extends StatelessWidget {
         child: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-            //crossAxisAlignment: ,
             children: const [
               TitlePageWidget(title: 'Objetivos'),
               GoalItemCardWidget(
@@ -28,6 +27,32 @@ class GoalsListPage extends StatelessWidget {
                 cardioPoints: 48,
                 calories: 458,
                 goalCompleted: true,
+              ),
+              GoalItemCardWidget(
+                typeGoal: TypeGoal.nutritional,
+                steps: 480,
+                description: 'Ganar masa muscular',
+                weight: 58,
+                height: 1.68,
+                goalCompleted: false,
+                typeActivity: 'levantar pesas',
+              ),
+              GoalItemCardWidget(
+                typeGoal: TypeGoal.physical,
+                steps: 480,
+                kilometers: 3,
+                cardioPoints: 48,
+                calories: 458,
+                goalCompleted: true,
+              ),
+              GoalItemCardWidget(
+                typeGoal: TypeGoal.nutritional,
+                steps: 480,
+                description: 'Ganar masa muscular',
+                weight: 58,
+                height: 1.68,
+                goalCompleted: false,
+                typeActivity: 'levantar pesas',
               ),
             ],
           ),

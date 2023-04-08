@@ -36,49 +36,70 @@ class GoalItemCardWidget extends StatelessWidget {
     final Size size = MediaQuery.of(context).size;
 
     return Card(
+      margin: const EdgeInsets.symmetric(vertical: 12),
       color: typeGoal == TypeGoal.physical
           ? ComplementPalette.green.shade100
-          : ComplementPalette.green.shade300,
+          : ComplementPalette.green.shade200,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
       child: SizedBox(
-        height: 150,
+        height: 170,
         width: size.width * 0.75,
-        child: Padding(padding: EdgeInsets.all(12), child: typeGoal == TypeGoal.physical
-            ? Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Center(
-                    child: Text(
-                      'Objetivo Físico',
-                      textAlign: TextAlign.center,
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: typeGoal == TypeGoal.physical
+              ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Center(
+                      child: Text(
+                        'Objetivo Físico',
+                        style: TextStyle(fontWeight: FontWeight.w500),
+                      ),
                     ),
-                  ),
-                  Text('Pasos: $steps pasos'),
-                  Text('Kilómetros: ${kilometers!.toStringAsFixed(2)} km'),
-                  Text('Puntos cardio: $cardioPoints pts'),
-                  Text('Calorías: ${calories!.toStringAsFixed(2)} cal'),
-                  goalCompleted
-                      ? const Text('!Felicidades! objetivo cumplido')
-                      : const Text('No cumpliste con tu objetivo'),
-                ],
-              )
-            : Column(
-                children: [
-                  const Text(
-                    'Objetivo Alimenticio',
-                    textAlign: TextAlign.center,
-                  ),
-                  Text('Objetivo: $description'),
-                  Text('Peso: ${weight!.toStringAsFixed(2)} kg'),
-                  Text('Altura: ${height!.toStringAsFixed(2)} m'),
-                  Text('Tipo actividad: $typeActivity'),
-                  goalCompleted
-                      ? const Text('!Felicidades! objetivo cumplido')
-                      : const Text('No cumpliste con tu objetivo'),
-                ],
-              ),),
+                    Text('Pasos: $steps pasos'),
+                    Text('Kilómetros: ${kilometers!.toStringAsFixed(2)} km'),
+                    Text('Puntos cardio: $cardioPoints pts'),
+                    Text('Calorías: ${calories!.toStringAsFixed(2)} cal'),
+                    const SizedBox(height: 12),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        goalCompleted
+                            ? const Text('!Felicidades! objetivo cumplido')
+                            : const Text('No cumpliste con tu objetivo'),
+                      ],
+                    ),
+                  ],
+                )
+              : Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Center(
+                      child: Text(
+                        'Objetivo Alimenticio',
+                        style: TextStyle(fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                    Text('Objetivo: $description'),
+                    Text('Peso: ${weight!.toStringAsFixed(2)} kg'),
+                    Text('Altura: ${height!.toStringAsFixed(2)} m'),
+                    Text('Tipo actividad: $typeActivity'),
+                    const SizedBox(height: 12),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        goalCompleted
+                            ? const Text('!Felicidades! objetivo cumplido')
+                            : const Text('No cumpliste con tu objetivo'),
+                      ],
+                    ),
+                  ],
+                ),
+        ),
       ),
     );
   }
