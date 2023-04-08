@@ -15,6 +15,7 @@ class GoalItemCardWidget extends StatelessWidget {
     this.height,
     this.typeActivity,
     this.goalCompleted = false,
+    this.isCreated = false,
     required this.typeGoal,
   }) : super(key: key);
 
@@ -29,6 +30,7 @@ class GoalItemCardWidget extends StatelessWidget {
   final String? typeActivity;
   final bool goalCompleted;
   final TypeGoal typeGoal;
+  final bool isCreated;
   //final
 
   @override
@@ -53,10 +55,10 @@ class GoalItemCardWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Center(
+                    Center(
                       child: Text(
-                        'Objetivo Físico',
-                        style: TextStyle(fontWeight: FontWeight.w500),
+                        isCreated ? 'Te comprometiste a' : 'Objetivo Físico',
+                        style: const TextStyle(fontWeight: FontWeight.w500),
                       ),
                     ),
                     Text('Pasos: $steps pasos'),
@@ -64,24 +66,27 @@ class GoalItemCardWidget extends StatelessWidget {
                     Text('Puntos cardio: $cardioPoints pts'),
                     Text('Calorías: ${calories!.toStringAsFixed(2)} cal'),
                     const SizedBox(height: 12),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        goalCompleted
-                            ? const Text('!Felicidades! objetivo cumplido')
-                            : const Text('No cumpliste con tu objetivo'),
-                      ],
-                    ),
+                    if (!isCreated)
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          goalCompleted
+                              ? const Text('!Felicidades! objetivo cumplido')
+                              : const Text('No cumpliste con tu objetivo'),
+                        ],
+                      ),
                   ],
                 )
               : Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Center(
+                    Center(
                       child: Text(
-                        'Objetivo Alimenticio',
-                        style: TextStyle(fontWeight: FontWeight.w500),
+                        isCreated
+                            ? 'Te comprometiste a'
+                            : 'Objetivo Alimenticio',
+                        style: const TextStyle(fontWeight: FontWeight.w500),
                       ),
                     ),
                     Text('Objetivo: $description'),
@@ -89,14 +94,15 @@ class GoalItemCardWidget extends StatelessWidget {
                     Text('Altura: ${height!.toStringAsFixed(2)} m'),
                     Text('Tipo actividad: $typeActivity'),
                     const SizedBox(height: 12),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        goalCompleted
-                            ? const Text('!Felicidades! objetivo cumplido')
-                            : const Text('No cumpliste con tu objetivo'),
-                      ],
-                    ),
+                    if (!isCreated)
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          goalCompleted
+                              ? const Text('!Felicidades! objetivo cumplido')
+                              : const Text('No cumpliste con tu objetivo'),
+                        ],
+                      ),
                   ],
                 ),
         ),

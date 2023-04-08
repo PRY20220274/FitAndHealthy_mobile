@@ -1,4 +1,6 @@
 import 'package:fit_healthy/domain/utils/themes/color_theme.dart';
+import 'package:fit_healthy/ui/goals/goals_list_page.dart';
+import 'package:fit_healthy/ui/shared/transition_page_route.dart';
 import 'package:flutter/material.dart';
 
 class GoalCardWidget extends StatelessWidget {
@@ -31,7 +33,8 @@ class GoalCardWidget extends StatelessWidget {
               child: Text(
                 titleGoal,
                 textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
               ),
             ),
             Image.asset(
@@ -41,30 +44,48 @@ class GoalCardWidget extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        bottomLeft: Radius.circular(10),
+                  child: InkWell(
+                    onTap: () {
+                      /*Navigator.push(context, TransitionPageRoute(
+                        child: const GoalsListPage(),
+                        direction: AxisDirection.up
+                      ));*/
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          bottomLeft: Radius.circular(10),
+                        ),
+                        color: ComplementPalette.green.shade400,
                       ),
-                      color: ComplementPalette.green.shade400,
+                      height: 40,
+                      child: const Center(child: Text('Crear')),
                     ),
-                    height: 40,
-                    child: const Center(child: Text('Crear')),
                   ),
                 ),
                 Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.only(
-                        topRight: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        TransitionPageRoute(
+                            child: const GoalsListPage(),
+                            direction: AxisDirection.up),
+                      );
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.only(
+                          topRight: Radius.circular(10),
+                          bottomRight: Radius.circular(10),
+                        ),
+                        color: ComplementPalette.green.shade200,
                       ),
-                      color: ComplementPalette.green.shade200,
+                      height: 40,
+                      //color: ComplementPalette.green.shade200,
+                      child: const Center(child: Text('Ver')),
                     ),
-                    height: 40,
-                    //color: ComplementPalette.green.shade200,
-                    child: const Center(child: Text('Ver')),
                   ),
                 )
               ],
