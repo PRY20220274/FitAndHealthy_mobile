@@ -11,7 +11,7 @@ class TitlePageWidget extends StatelessWidget {
       title,
       textAlign: TextAlign.center,
       style: const TextStyle(
-        fontSize: 20,
+        fontSize: 24,
         fontWeight: FontWeight.w600,
       ),
     );
