@@ -1,4 +1,4 @@
-import 'package:fit_healthy/ui/home/home_page.dart';
+import 'package:fit_healthy/ui/main/main_page.dart';
 import 'package:fit_healthy/ui/shared/app_filled_button.dart';
 import 'package:fit_healthy/ui/shared/app_input_decoration.dart';
 import 'package:fit_healthy/ui/shared/transition_page_route.dart';
@@ -68,7 +68,7 @@ class SignUpForm extends StatelessWidget {
                   Navigator.pushReplacement(
                       context,
                       TransitionPageRoute(
-                          child: const HomePage(),
+                          child: const MainPage(),
                           direction: AxisDirection.left));
                 })
           ],
