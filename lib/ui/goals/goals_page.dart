@@ -1,3 +1,5 @@
+import 'package:fit_healthy/ui/goals/nutritional_goals_create_page.dart';
+import 'package:fit_healthy/ui/goals/physical_goals_create_page.dart';
 import 'package:fit_healthy/ui/goals/widgets/goal_card_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -12,10 +14,12 @@ class GoalsPage extends StatelessWidget {
         GoalCardWidget(
           titleGoal: 'Objetivos\nFísicos',
           imageNameAsset: 'exercise.png',
+          routeWidget: PhysicalGoalsCreate(),
         ),
         GoalCardWidget(
           titleGoal: 'Objetivos\nAlimenticios',
           imageNameAsset: 'healthy-food.png',
+          routeWidget: NutritionalGoalsCreate(),
         ),
       ],
     );

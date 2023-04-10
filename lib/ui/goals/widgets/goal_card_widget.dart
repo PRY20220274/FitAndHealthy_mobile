@@ -4,14 +4,16 @@ import 'package:fit_healthy/ui/shared/transition_page_route.dart';
 import 'package:flutter/material.dart';
 
 class GoalCardWidget extends StatelessWidget {
-  const GoalCardWidget({
-    Key? key,
-    required this.titleGoal,
-    required this.imageNameAsset,
-  }) : super(key: key);
+  const GoalCardWidget(
+      {Key? key,
+      required this.titleGoal,
+      required this.imageNameAsset,
+      required this.routeWidget})
+      : super(key: key);
 
   final String titleGoal;
   final String imageNameAsset;
+  final Widget routeWidget;
 
   @override
   Widget build(BuildContext context) {
@@ -46,10 +48,10 @@ class GoalCardWidget extends StatelessWidget {
                 Expanded(
                   child: InkWell(
                     onTap: () {
-                      /*Navigator.push(context, TransitionPageRoute(
-                        child: const GoalsListPage(),
-                        direction: AxisDirection.up
-                      ));*/
+                      Navigator.push(
+                          context,
+                          TransitionPageRoute(
+                              child: routeWidget, direction: AxisDirection.up));
                     },
                     child: Container(
                       decoration: BoxDecoration(
