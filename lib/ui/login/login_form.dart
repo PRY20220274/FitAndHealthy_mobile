@@ -1,3 +1,4 @@
+import 'package:fit_healthy/ui/home/home_page.dart';
 import 'package:fit_healthy/ui/shared/app_filled_button.dart';
 import 'package:fit_healthy/ui/shared/app_input_decoration.dart';
 import 'package:fit_healthy/ui/shared/transition_page_route.dart';
@@ -34,7 +35,15 @@ class LogInform extends StatelessWidget {
                   autocorrect: false),
             ),
             const SizedBox(height: 24),
-            AppFilledButton(text: 'Iniciar Sesion', onPressed: () {}),
+            AppFilledButton(
+                text: 'Iniciar Sesion',
+                onPressed: () {
+                  Navigator.pushReplacement(
+                      context,
+                      TransitionPageRoute(
+                          child: const HomePage(),
+                          direction: AxisDirection.left));
+                }),
             const SizedBox(height: 72),
             const Padding(
               padding: EdgeInsets.all(8.0),
