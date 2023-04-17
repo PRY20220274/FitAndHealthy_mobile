@@ -112,12 +112,12 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               const SuggestionWidget(
-                typeSuggestion: Suggestions.physical,
+                typeSuggestion: TypeSuggestion.physical,
                 description:
                     'Si bailas o realizas por una hora estarías cumpliendo con 480 MET',
               ),
               const SuggestionWidget(
-                typeSuggestion: Suggestions.nutritional,
+                typeSuggestion: TypeSuggestion.nutritional,
                 description:
                     'Deberías de reducir el consumo de papa, !Puedes probar con la zanahoria!',
               ),

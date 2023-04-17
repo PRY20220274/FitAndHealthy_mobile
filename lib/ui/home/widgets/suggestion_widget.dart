@@ -10,7 +10,7 @@ class SuggestionWidget extends StatelessWidget {
     required this.description,
   }) : super(key: key);
 
-  final Suggestions typeSuggestion;
+  final TypeSuggestion typeSuggestion;
   final String description;
 
   @override

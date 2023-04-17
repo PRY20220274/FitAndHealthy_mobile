@@ -1,4 +1,4 @@
-enum Suggestions {
+enum TypeSuggestion {
   physical,
   nutritional,
 }
