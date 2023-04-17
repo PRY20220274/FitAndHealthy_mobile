@@ -13,9 +13,9 @@ class NavigationProvider extends ChangeNotifier {
   late PageController _pageController;
 
   NavigationProvider() {
-    _currentPos = 0;
-    _currentPage = _pages[0];
-    _pageController = PageController(initialPage: 0);
+    _currentPos = 2;
+    _currentPage = _pages[2];
+    _pageController = PageController(initialPage: 2);
   }
 
   PageController get pageController => _pageController;
