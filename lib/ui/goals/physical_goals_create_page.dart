@@ -6,8 +6,17 @@ import 'package:fit_healthy/ui/shared/app_filled_button.dart';
 import 'package:fit_healthy/ui/shared/title_page_widget.dart';
 import 'package:flutter/material.dart';
 
-class PhysicalGoalsCreate extends StatelessWidget {
+class PhysicalGoalsCreate extends StatefulWidget {
   const PhysicalGoalsCreate({Key? key}) : super(key: key);
+
+  @override
+  State<PhysicalGoalsCreate> createState() => _PhysicalGoalsCreateState();
+}
+
+class _PhysicalGoalsCreateState extends State<PhysicalGoalsCreate> {
+  List typesFrecuency = ['Diaria', 'Semanal', 'Quincenal', 'Mensual'];
+
+  String seletedTypeFrecuency = '';
 
   @override
   Widget build(BuildContext context) {
@@ -48,19 +57,34 @@ class PhysicalGoalsCreate extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Expanded(
+                    Flexible(
                       child: SizedBox(
+                        width: 150,
                         height: 350,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            TextFormField(
+                            /*TextFormField(
                                 decoration: appInputDecoration(
                                     labelText: '',
                                     fillColor: Theme.of(context)
                                         .colorScheme
                                         .secondary),
-                                autocorrect: false),
+                                autocorrect: false),*/
+                            DropdownButtonFormField(
+                                items: typesFrecuency.map((item) {
+                                  return DropdownMenuItem(
+                                      child: Text(item), value: item);
+                                }).toList(),
+                                dropdownColor: ComplementPalette.green.shade50,
+                                decoration: appInputDecoration(
+                                    labelText: '',
+                                    fillColor: ComplementPalette.green.shade50),
+                                onChanged: (value) {
+                                  setState(() {
+                                    seletedTypeFrecuency = value.toString();
+                                  });
+                                }),
                             TextFormField(
                                 decoration: appInputDecoration(
                                     labelText: '',
