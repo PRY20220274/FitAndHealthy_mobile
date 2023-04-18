@@ -1,5 +1,7 @@
+import 'package:fit_healthy/business/auth/auth_provider.dart';
 import 'package:fit_healthy/business/shared/navigation_provider.dart';
 import 'package:fit_healthy/domain/utils/themes/color_theme.dart';
+import 'package:fit_healthy/persistence/remote/implements/auth_repository.dart';
 import 'package:fit_healthy/ui/login/login_page.dart';
 import 'package:fit_healthy/ui/main/main_page.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +22,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => NavigationProvider()),
+        Provider(create: (_) => AuthProvider(AuthRepository())),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -30,19 +33,20 @@ class MyApp extends StatelessWidget {
               borderSide: BorderSide(color: Colors.white),
             )),
             colorScheme: ColorScheme(
-                primary: Palette.green.shade200,
-                secondary: Palette.green.shade50,
-                surface: Colors.white,
-                error: Colors.red,
-                background: Colors.white,
-                brightness: Brightness.light,
-                onBackground: Colors.black,
-                onError: Colors.white,
-                onPrimary: Colors.black,
-                onSecondary: Colors.black,
-                onSurface: Colors.black,)),
-                //primaryVariant: Palette.green.shade50,
-                //secondaryVariant: Palette.green.shade50)),
+              primary: Palette.green.shade200,
+              secondary: Palette.green.shade50,
+              surface: Colors.white,
+              error: Colors.red,
+              background: Colors.white,
+              brightness: Brightness.light,
+              onBackground: Colors.black,
+              onError: Colors.white,
+              onPrimary: Colors.black,
+              onSecondary: Colors.black,
+              onSurface: Colors.black,
+            )),
+        //primaryVariant: Palette.green.shade50,
+        //secondaryVariant: Palette.green.shade50)),
         /*home: const MyHomePage(title: 'fit and Health'),*/
         home: const LogInPage(),
         //home: const MainPage(),
