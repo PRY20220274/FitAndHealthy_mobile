@@ -37,17 +37,17 @@ class GoalItemCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
 
-    return Card(
-      margin: const EdgeInsets.symmetric(vertical: 12),
-      color: typeGoal == TypeGoal.physical
-          ? ComplementPalette.green.shade100
-          : ComplementPalette.green.shade200,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(10)),
-      ),
-      child: SizedBox(
-        height: 170,
-        width: size.width * 0.75,
+    return SizedBox(
+      width: size.width * 0.75,
+      height: 250,
+      child: Card(
+        margin: const EdgeInsets.symmetric(vertical: 12),
+        color: typeGoal == TypeGoal.physical
+            ? ComplementPalette.green.shade100
+            : ComplementPalette.green.shade200,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+        ),
         child: Padding(
           padding: const EdgeInsets.all(12),
           child: typeGoal == TypeGoal.physical
