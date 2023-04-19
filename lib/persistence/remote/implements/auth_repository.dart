@@ -3,6 +3,7 @@ import 'package:fit_healthy/domain/models/auth/user_login.dart';
 import 'package:fit_healthy/domain/models/auth/user_token.dart';
 import 'package:fit_healthy/domain/utils/constants/api_constants.dart';
 import 'package:fit_healthy/persistence/remote/interfaces/base_auth_repository.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthRepository extends BaseAuthRepository {
   static const String _baseUrl = AUTH_API;
@@ -21,6 +22,8 @@ class AuthRepository extends BaseAuthRepository {
 
       final userToken = UserToken.fromMap(response.data);
 
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString("token", userToken.token);
       return userToken.token;
     } on Exception catch (_) {
       rethrow;

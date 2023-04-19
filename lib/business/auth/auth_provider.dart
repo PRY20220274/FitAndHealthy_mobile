@@ -1,6 +1,7 @@
 import 'package:fit_healthy/domain/models/auth/user_login.dart';
 import 'package:fit_healthy/persistence/remote/implements/auth_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthProvider extends ChangeNotifier {
   final AuthRepository _authRepository;
@@ -19,6 +20,9 @@ class AuthProvider extends ChangeNotifier {
       notifyListeners();
       final result = await _authRepository.signIn(userLogin);
       _isLoading = false;
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      print('===== token ${prefs.getString("token")}');
+
       notifyListeners();
       return result;
     } on Exception catch (err) {

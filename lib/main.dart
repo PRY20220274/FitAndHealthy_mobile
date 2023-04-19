@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => NavigationProvider()),
-        Provider(create: (_) => AuthProvider(AuthRepository())),
+        ChangeNotifierProvider(create: (_) => AuthProvider(AuthRepository())),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
