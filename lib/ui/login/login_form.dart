@@ -1,4 +1,5 @@
 import 'package:fit_healthy/business/auth/auth_provider.dart';
+import 'package:fit_healthy/business/goals/goals_provider.dart';
 import 'package:fit_healthy/domain/models/auth/user_login.dart';
 import 'package:fit_healthy/ui/main/main_page.dart';
 import 'package:fit_healthy/ui/shared/app_filled_button.dart';
@@ -7,6 +8,7 @@ import 'package:fit_healthy/ui/shared/transition_page_route.dart';
 import 'package:fit_healthy/ui/signup/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LogInform extends StatelessWidget {
   const LogInform({Key? key}) : super(key: key);
@@ -48,7 +50,9 @@ class LogInform extends StatelessWidget {
               AppFilledButton(
                   text: 'Iniciar Sesion',
                   onPressed: () async {
-                    final result_token = await authProvider.signIn(_userLogin);
+                    await authProvider.signIn(_userLogin);
+                    Provider.of<GoalsProvider>(context, listen: false)
+                        .getAllGoals();
 
                     Navigator.pushReplacement(
                         context,
