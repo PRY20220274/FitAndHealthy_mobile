@@ -8,7 +8,6 @@ import 'package:fit_healthy/ui/shared/transition_page_route.dart';
 import 'package:fit_healthy/ui/signup/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LogInform extends StatelessWidget {
   const LogInform({Key? key}) : super(key: key);

@@ -1,3 +1,5 @@
+import 'package:fit_healthy/business/iot/iot_provider.dart';
+import 'package:fit_healthy/business/suggestion/suggestion_provider.dart';
 import 'package:fit_healthy/domain/utils/enums/suggestions_enum.dart';
 import 'package:fit_healthy/domain/utils/enums/status_enum.dart';
 import 'package:fit_healthy/ui/home/widgets/suggestion_widget.dart';
@@ -5,6 +7,7 @@ import 'package:fit_healthy/ui/home/widgets/profile_widget.dart';
 import 'package:fit_healthy/ui/home/widgets/status_info_tile_widget.dart';
 import 'package:fit_healthy/ui/home/widgets/status_title_tile_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -13,19 +16,21 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
 
+    final iotProvider = Provider.of<IotProvider>(context);
+    iotProvider.getPhysicalData();
+    final userPhysicalData = iotProvider.userPhysicalData;
+
+    final suggestionProvider = Provider.of<SuggestionProvider>(context);
+    suggestionProvider.getSuggestionsToday();
+    final physicalSuggestion = suggestionProvider.physicalSuggestionToday;
+    final nutritionalSuggestion = suggestionProvider.nutritionalSuggestionToday;
+
     return ListView(
-      //fit: StackFit.expand,
       children: [
         SizedBox(
           height: size.height * 0.20,
           child: ProfileWidget(size: size),
         ),
-        /*Positioned(
-            child: Container(
-              height: 10,
-              color: Colors.green,
-            ),
-          ),*/
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 28, horizontal: 12),
           child: Column(
@@ -34,15 +39,13 @@ class HomePage extends StatelessWidget {
                 padding: EdgeInsets.only(bottom: 12),
                 child: StatusTitleTileWidget(
                   title: 'Estado Físico',
-                  //icon: Icons.directions_run_rounded,
                   imageNameAsset: 'exercise.png',
                 ),
               ),
-              //SizedBox(height: 200),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: const [
-                  PhysicalStatusInfoTileWidget(
+                children: [
+                  const PhysicalStatusInfoTileWidget(
                     title: 'Peso',
                     value: 58.62,
                     units: 'kg',
@@ -51,11 +54,11 @@ class HomePage extends StatelessWidget {
                   ),
                   PhysicalStatusInfoTileWidget(
                     title: 'Pasos',
-                    value: 33,
+                    value: userPhysicalData.steps.toDouble(),
                     units: 'pasos',
                     imageNameAsset: 'running-shoe.png',
                     status: PhysicalStatus.steps,
-                    subValue: 1.53,
+                    subValue: userPhysicalData.kilometersTraveled,
                     subUnits: 'km',
                     subTitle: 'Kilómetros recorridos',
                     subImageNameAsset: 'route.png',
@@ -65,19 +68,19 @@ class HomePage extends StatelessWidget {
               const SizedBox(height: 14),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: const [
+                children: [
                   PhysicalStatusInfoTileWidget(
                     title: 'Puntos cardio',
-                    value: 33,
+                    value: userPhysicalData.cardioPoints.toDouble(),
                     units: 'pts',
                     status: PhysicalStatus.cardio,
                     imageNameAsset: 'heart-beat.png',
                   ),
                   PhysicalStatusInfoTileWidget(
                     title: 'Calorías',
-                    value: 58,
+                    value: userPhysicalData.calories,
                     units: 'cal',
-                    status: PhysicalStatus.weight,
+                    status: PhysicalStatus.calories,
                     imageNameAsset: 'calories.png',
                   ),
                 ],
@@ -111,15 +114,13 @@ class HomePage extends StatelessWidget {
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                 ),
               ),
-              const SuggestionWidget(
+              SuggestionWidget(
                 typeSuggestion: TypeSuggestion.physical,
-                description:
-                    'Si bailas o realizas por una hora estarías cumpliendo con 480 MET',
+                description: physicalSuggestion.description,
               ),
-              const SuggestionWidget(
+              SuggestionWidget(
                 typeSuggestion: TypeSuggestion.nutritional,
-                description:
-                    'Deberías de reducir el consumo de papa, !Puedes probar con la zanahoria!',
+                description: nutritionalSuggestion.description,
               ),
               //const SizedBox(height: 48,)
             ],

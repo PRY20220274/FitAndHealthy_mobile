@@ -1,11 +1,14 @@
 import 'package:fit_healthy/business/auth/auth_provider.dart';
 import 'package:fit_healthy/business/goals/goals_provider.dart';
+import 'package:fit_healthy/business/iot/iot_provider.dart';
 import 'package:fit_healthy/business/shared/navigation_provider.dart';
+import 'package:fit_healthy/business/suggestion/suggestion_provider.dart';
 import 'package:fit_healthy/domain/utils/themes/color_theme.dart';
+import 'package:fit_healthy/persistence/remote/implements/iot_repository.dart';
 import 'package:fit_healthy/persistence/remote/implements/auth_repository.dart';
 import 'package:fit_healthy/persistence/remote/implements/goals_repository.dart';
+import 'package:fit_healthy/persistence/remote/implements/suggestion_repository.dart';
 import 'package:fit_healthy/ui/login/login_page.dart';
-import 'package:fit_healthy/ui/main/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
@@ -26,6 +29,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => NavigationProvider()),
         ChangeNotifierProvider(create: (_) => AuthProvider(AuthRepository())),
         ChangeNotifierProvider(create: (_) => GoalsProvider(GoalsRepository())),
+        ChangeNotifierProvider(create: (_) => IotProvider(IotRepository())),
+        ChangeNotifierProvider(create: (_) => SuggestionProvider(SuggestionRepository())),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

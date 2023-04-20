@@ -1,6 +1,6 @@
 import 'package:fit_healthy/domain/models/auth/user_login.dart';
 import 'package:fit_healthy/persistence/remote/implements/auth_repository.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthProvider extends ChangeNotifier {
