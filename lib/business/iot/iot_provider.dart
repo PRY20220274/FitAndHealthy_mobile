@@ -1,5 +1,5 @@
 import 'package:fit_healthy/domain/models/iot/user_physical_data.dart';
-import 'package:fit_healthy/persistence/iot/implements/iot_repository.dart';
+import 'package:fit_healthy/persistence/remote/implements/iot_repository.dart';
 import 'package:flutter/foundation.dart';
 
 class IotProvider extends ChangeNotifier {

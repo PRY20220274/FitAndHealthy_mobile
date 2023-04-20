@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:fit_healthy/domain/models/iot/user_physical_data.dart';
 import 'package:fit_healthy/domain/utils/constants/api_constants.dart';
-import 'package:fit_healthy/persistence/iot/interfaces/base_iot_repository.dart';
+import 'package:fit_healthy/persistence/remote/interfaces/base_iot_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class IotRepository extends BaseIotRepository {
@@ -13,7 +13,7 @@ class IotRepository extends BaseIotRepository {
     try {
       const url = _baseUrl + '/fit-api/physical-data';
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      final token = prefs.getString("token");
+      final token = prefs.getString('token');
 
       final response = await _dio.get(
         url,

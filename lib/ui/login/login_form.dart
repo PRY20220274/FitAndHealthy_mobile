@@ -50,7 +50,6 @@ class LogInform extends StatelessWidget {
                   text: 'Iniciar Sesion',
                   onPressed: () async {
                     await authProvider.signIn(_userLogin);
-                    Provider.of<IotProvider>(context, listen: false).getPhysicalData();
 
                     Navigator.pushReplacement(
                         context,
