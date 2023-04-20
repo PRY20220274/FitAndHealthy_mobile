@@ -43,6 +43,7 @@ class PhysicalActivityPage extends StatelessWidget {
                   currencyValue: '2.24 km',
                   currencyFrecuency: ' hoy',
                   currencyMet: 480,
+                  imageIcon: 'correr.png',
                 ),
                 CardPhysicalActivity(
                   activity: 'Caminar',
@@ -51,6 +52,7 @@ class PhysicalActivityPage extends StatelessWidget {
                   currencyValue: '15 mins',
                   currencyFrecuency: ' por día',
                   currencyMet: 1260,
+                  imageIcon: 'caminar.png',
                 )
               ],
             ),
@@ -63,12 +65,14 @@ class PhysicalActivityPage extends StatelessWidget {
                   goalMet: 8,
                   currencyValue: '60 min',
                   currencyMet: 480,
+                  imageIcon: 'cantar.png',
                 ),
                 CardPhysicalActivity(
                   activity: 'Labores de jardinería\n o trabajos domésticos\n',
                   goalMet: 4,
                   currencyValue: '240 min',
                   currencyMet: 960,
+                  imageIcon: 'jardineria.png',
                 )
               ],
             ),
@@ -81,12 +85,14 @@ class PhysicalActivityPage extends StatelessWidget {
                   goalMet: 7,
                   currencyValue: '60 min',
                   currencyMet: 520,
+                  imageIcon: 'futbol.png',
                 ),
                 CardPhysicalActivity(
                   activity: 'Resistencia y\n entrenamiento con\n pesas',
                   goalMet: 5,
                   currencyValue: '60 min',
                   currencyMet: 300,
+                  imageIcon: 'resistencia.png',
                 )
               ],
             ),

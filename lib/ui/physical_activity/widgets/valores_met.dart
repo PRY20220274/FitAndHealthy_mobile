@@ -8,52 +8,52 @@ class ValoresMet extends StatelessWidget {
     return Column(
       children: const [
         ValorMet(
-          imageIcon: '404-error.png',
+          imageIcon: 'ciclismo.png',
           text: 'Ciclismo(moderado)',
           valueMet: '7.5',
         ),
         ValorMet(
-          imageIcon: '404-error.png',
+          imageIcon: 'ciclismo.png',
           text: 'Ciclismo(vigoroso)',
           valueMet: '14',
         ),
         ValorMet(
-          imageIcon: '404-error.png',
+          imageIcon: 'caminar.png',
           text: 'Caminar rápido',
           valueMet: '6',
         ),
         ValorMet(
-          imageIcon: '404-error.png',
+          imageIcon: 'correr.png',
           text: 'Correr',
           valueMet: '8',
         ),
         ValorMet(
-          imageIcon: '404-error.png',
+          imageIcon: 'jardineria.png',
           text: 'Labores de jardinería',
           valueMet: '4',
         ),
         ValorMet(
-          imageIcon: '404-error.png',
+          imageIcon: 'labores_domesticas.png',
           text: 'Trabajos domésticos',
           valueMet: '4',
         ),
         ValorMet(
-          imageIcon: '404-error.png',
+          imageIcon: 'saltar_cuerda.png',
           text: 'Saltar la cuerda',
           valueMet: '11',
         ),
         ValorMet(
-          imageIcon: '404-error.png',
+          imageIcon: 'subir_escaleras.png',
           text: 'Subir escaleras',
           valueMet: '5',
         ),
         ValorMet(
-          imageIcon: '404-error.png',
+          imageIcon: 'pilates.jpg',
           text: 'Pilates',
           valueMet: '3',
         ),
         ValorMet(
-          imageIcon: '404-error.png',
+          imageIcon: 'resistencia.png',
           text: 'Ejercicio de resistencia',
           valueMet: '5',
         )

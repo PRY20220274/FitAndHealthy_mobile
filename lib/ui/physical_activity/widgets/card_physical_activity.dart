@@ -27,7 +27,7 @@ class CardPhysicalActivity extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return SizedBox(
-      height: 250,
+      height: 220,
       width: size.width / 2 * 0.9,
       child: Card(
         color: Palette.green.shade50,
@@ -56,8 +56,8 @@ class CardPhysicalActivity extends StatelessWidget {
                 ],
               ),
               Image.asset('assets/images/$imageIcon', height: 50),
-              const SizedBox(height: 8),
-              goalTime != 0 ? Text('$goalTime min semanal') : const Text(''),
+              //const SizedBox(height: 8),
+              if (goalTime != 0) Text('$goalTime min semanal'),
               const SizedBox(height: 8),
               //Text('$currencyValue $currencyFrecuency'),
               RichText(
