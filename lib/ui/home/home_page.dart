@@ -16,14 +16,9 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
 
-    final iotProvider = Provider.of<IotProvider>(context);
-    iotProvider.getPhysicalData();
-    final userPhysicalData = iotProvider.userPhysicalData;
-
-    final suggestionProvider = Provider.of<SuggestionProvider>(context);
-    suggestionProvider.getSuggestionsToday();
-    final physicalSuggestion = suggestionProvider.physicalSuggestionToday;
-    final nutritionalSuggestion = suggestionProvider.nutritionalSuggestionToday;
+    final userPhysicalData = Provider.of<IotProvider>(context).userPhysicalData;
+    final physicalSuggestion = Provider.of<SuggestionProvider>(context).physicalSuggestionToday;
+    final nutritionalSuggestion = Provider.of<SuggestionProvider>(context).nutritionalSuggestionToday;
 
     return ListView(
       children: [

@@ -14,12 +14,12 @@ class SuggestionRepository extends BaseSuggestionRepository {
       const url = _baseUrl + '/recommendations-api/food/today';
       SharedPreferences prefs = await SharedPreferences.getInstance();
       final token = prefs.getString('token');
-
+      print('start peticion nutritional today');
       final response = await _dio.get(
         url,
         options: Options(headers: {'Authorization': 'Bearer $token'}),
       );
-
+      print('finish peticion nutritional today');
       final nutritionalSuggestionToday = Suggestion.fromMap(response.data);
       return nutritionalSuggestionToday;
     } on Exception catch (_) {
@@ -33,12 +33,12 @@ class SuggestionRepository extends BaseSuggestionRepository {
       const url = _baseUrl + '/recommendations-api/physical/today';
       SharedPreferences prefs = await SharedPreferences.getInstance();
       final token = prefs.getString('token');
-
+      print('start peticion physical today');
       final response = await _dio.get(
         url,
         options: Options(headers: {'Authorization': 'Bearer $token'}),
       );
-
+      print('finish peticion physical today');
       final physicalSuggestionToday = Suggestion.fromMap(response.data);
       return physicalSuggestionToday;
     } on Exception catch (_) {
