@@ -2,6 +2,7 @@ import 'package:fit_healthy/business/iot/iot_provider.dart';
 import 'package:fit_healthy/business/suggestion/suggestion_provider.dart';
 import 'package:fit_healthy/domain/utils/enums/suggestions_enum.dart';
 import 'package:fit_healthy/domain/utils/enums/status_enum.dart';
+import 'package:fit_healthy/ui/forms/form_drinks_page.dart';
 import 'package:fit_healthy/ui/home/widgets/suggestion_widget.dart';
 import 'package:fit_healthy/ui/home/widgets/profile_widget.dart';
 import 'package:fit_healthy/ui/home/widgets/status_info_tile_widget.dart';
@@ -17,8 +18,10 @@ class HomePage extends StatelessWidget {
     final Size size = MediaQuery.of(context).size;
 
     final userPhysicalData = Provider.of<IotProvider>(context).userPhysicalData;
-    final physicalSuggestion = Provider.of<SuggestionProvider>(context).physicalSuggestionToday;
-    final nutritionalSuggestion = Provider.of<SuggestionProvider>(context).nutritionalSuggestionToday;
+    final physicalSuggestion =
+        Provider.of<SuggestionProvider>(context).physicalSuggestionToday;
+    final nutritionalSuggestion =
+        Provider.of<SuggestionProvider>(context).nutritionalSuggestionToday;
 
     return ListView(
       children: [
@@ -91,14 +94,17 @@ class HomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: const [
                   NutritionalStatusInfoTileWidget(
-                    title: 'Agua',
-                    description: '750 ml',
-                    imageNameAsset: 'glass-of-water.png',
-                  ),
+                      title: 'Agua',
+                      description: '750 ml',
+                      imageNameAsset: 'glass-of-water.png',
+                      categoryId: '1',
+                      routeWidget: FormDrinksPage()),
                   NutritionalStatusInfoTileWidget(
                     title: 'Alimentos',
                     description: 'Te alimentaste \n muy bien',
                     imageNameAsset: 'portion.png',
+                    categoryId: '2',
+                    routeWidget: FormDrinksPage(),
                   ),
                 ],
               ),

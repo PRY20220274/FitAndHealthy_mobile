@@ -12,6 +12,8 @@ class GoalsListPage extends StatelessWidget {
     final allGoals = Provider.of<GoalsProvider>(context).allGoals;
     final Size size = MediaQuery.of(context).size;
 
+    final goalsCompleteMaper = ['Completado', 'No completado'];
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -30,7 +32,9 @@ class GoalsListPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const TitlePageWidget(title: 'Objetivos'),
-              const SizedBox(height: 12,),
+              const SizedBox(
+                height: 12,
+              ),
               Flexible(
                 child: ListView.builder(
                     itemCount: allGoals.length,
@@ -48,7 +52,9 @@ class GoalsListPage extends StatelessWidget {
                           weight: 45,
                           height: 1.65,
                           typeActivity: goal.activity,
-                          goalCompleted: true,
+                          goalCompleted: goal.completed == goalsCompleteMaper[0]
+                              ? true
+                              : false,
                           isCreated: false,
                         );
                       } else {
