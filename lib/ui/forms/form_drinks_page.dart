@@ -16,6 +16,7 @@ class FormDrinksPage extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios),
           onPressed: () {
+            Provider.of<FormProvider>(context, listen: false).setformRead(null);
             Navigator.pop(context);
           },
         ),
@@ -36,7 +37,7 @@ class FormDrinksPage extends StatelessWidget {
                       })
                     ],
                   )
-                : const Text('Cargando')),
+                : const Text('Cargando...')),
       ),
     );
   }

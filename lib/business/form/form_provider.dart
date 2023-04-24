@@ -35,6 +35,10 @@ class FormProvider extends ChangeNotifier {
     }
   }
 
+  void setformRead(FormRead? newForm) {
+    _formRead = newForm;
+  }
+
   @override
   void dispose() {
     // TODO: implement dispose
