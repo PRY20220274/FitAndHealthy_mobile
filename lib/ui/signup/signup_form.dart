@@ -1,8 +1,11 @@
+import 'package:fit_healthy/business/auth/signup_provider.dart';
+import 'package:fit_healthy/business/form/signup_form_provider.dart';
 import 'package:fit_healthy/ui/main/main_page.dart';
 import 'package:fit_healthy/ui/shared/app_filled_button.dart';
 import 'package:fit_healthy/ui/shared/app_input_decoration.dart';
 import 'package:fit_healthy/ui/shared/transition_page_route.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({Key? key}) : super(key: key);
@@ -21,6 +24,8 @@ class _SignUpFormState extends State<SignUpForm> {
   @override
   Widget build(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
+    final signUpFormProvider = Provider.of<SignUpFormProvider>(context);
+    final signUpProvider = Provider.of<SignUpProvider>(context);
 
     return Form(
         key: _formKey,
@@ -29,21 +34,16 @@ class _SignUpFormState extends State<SignUpForm> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  decoration: appInputDecoration(
-                      labelText: 'Nombre', fillColor: Colors.white),
-                  autocorrect: false,
-                  keyboardType: TextInputType.emailAddress),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                decoration: appInputDecoration(
+                    labelText: 'Nombre', fillColor: Colors.white),
+                autocorrect: false,
+                keyboardType: TextInputType.emailAddress,
+                onChanged: (value) =>
+                    signUpFormProvider.buildUserSignUp(firstName: value),
+              ),
             ),
             const SizedBox(height: 12),
-            /*Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  decoration: appInputDecoration(
-                      labelText: 'Sexo', fillColor: Colors.white),
-                  autocorrect: false),
-            ),*/
             DropdownButtonFormField(
               items: typeGender.map((item) {
                 return DropdownMenuItem(child: Text(item), value: item);
@@ -51,11 +51,13 @@ class _SignUpFormState extends State<SignUpForm> {
               dropdownColor: Colors.white,
               decoration: appInputDecoration(
                   labelText: 'Sexo', fillColor: Colors.white),
-              onChanged: (value) {
+              onChanged: (value) =>
+                  signUpFormProvider.buildUserSignUp(gender: value.toString()),
+              /*{
                 setState(() {
                   seletedTypeGender = value.toString();
                 });
-              },
+              },*/
               value: seletedTypeGender,
             ),
             const SizedBox(height: 24),
@@ -77,12 +79,13 @@ class _SignUpFormState extends State<SignUpForm> {
                       lastDate: DateTime.now());
 
                   if (newDate == null) return;
-                  setState(() {
+                  /*setState(() {
                     currentDate = newDate;
-                  });
+                  });*/
+                  signUpFormProvider.buildUserSignUp(birthDate: newDate);
 
                   dateController.text =
-                      currentDate.toIso8601String().split('T')[0];
+                      signUpFormProvider.userSignUp.birthDate.toIso8601String().split('T')[0];
                 },
                 controller: dateController,
                 //onSaved: ,
@@ -92,10 +95,13 @@ class _SignUpFormState extends State<SignUpForm> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  decoration: appInputDecoration(
-                      labelText: 'Email', fillColor: Colors.white),
-                  autocorrect: false),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                decoration: appInputDecoration(
+                    labelText: 'Email', fillColor: Colors.white),
+                autocorrect: false,
+                onChanged: (value) =>
+                    signUpFormProvider.buildUserSignUp(email: value),
+              ),
             ),
             const SizedBox(height: 24),
             Padding(
@@ -106,17 +112,24 @@ class _SignUpFormState extends State<SignUpForm> {
                     labelText: 'Contraseña', fillColor: Colors.white),
                 autocorrect: false,
                 obscureText: true,
+                onChanged: (value) =>
+                    signUpFormProvider.buildUserSignUp(password: value),
               ),
             ),
             const SizedBox(height: 24),
             AppFilledButton(
                 text: 'Registrarme',
-                onPressed: () {
-                  Navigator.pushReplacement(
-                      context,
-                      TransitionPageRoute(
-                          child: const MainPage(),
-                          direction: AxisDirection.left));
+                onPressed: () async {
+                  FocusManager.instance.primaryFocus?.unfocus();
+                  await signUpProvider.signUp(signUpFormProvider.userSignUp);
+
+                  if (!signUpProvider.isLoading && signUpProvider.userCreated) {
+                    Navigator.pushReplacement(
+                        context,
+                        TransitionPageRoute(
+                            child: const MainPage(),
+                            direction: AxisDirection.left));
+                  }
                 })
           ],
         ));

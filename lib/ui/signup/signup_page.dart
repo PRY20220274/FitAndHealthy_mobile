@@ -1,5 +1,7 @@
+import 'package:fit_healthy/business/form/signup_form_provider.dart';
 import 'package:fit_healthy/ui/signup/signup_form.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -13,7 +15,20 @@ class SignUpPage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const SizedBox(height: 24),
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Provider.of<SignUpFormProvider>(context, listen: false).resetUserSignUp();
+                        Navigator.pop(context);
+                      },
+                      icon: const Icon(Icons.arrow_back_ios),
+                    ),
+                  ],
+                ),
+              ),
               ClipRRect(
                 borderRadius: BorderRadius.circular(90.0),
                 child: Image.asset('assets/images/logo.png',

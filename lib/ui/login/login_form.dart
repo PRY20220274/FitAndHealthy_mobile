@@ -45,6 +45,7 @@ class LogInform extends StatelessWidget {
                       labelText: 'Contraseña', fillColor: Colors.white),
                   autocorrect: false,
                   onChanged: (value) => _userLogin.password = value,
+                  obscureText: true,
                 ),
               ),
               const SizedBox(height: 24),
@@ -71,7 +72,7 @@ class LogInform extends StatelessWidget {
               AppFilledButton(
                   text: 'Crea tu cuenta',
                   onPressed: () {
-                    Navigator.pushReplacement(
+                    Navigator.push(
                         context,
                         TransitionPageRoute(
                             child: const SignUpPage(),
