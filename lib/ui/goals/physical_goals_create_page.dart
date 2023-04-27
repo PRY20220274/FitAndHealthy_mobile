@@ -1,3 +1,7 @@
+import 'package:fit_healthy/business/goals/goals_provider.dart';
+import 'package:fit_healthy/business/shared/goal_form_provider.dart';
+import 'package:fit_healthy/domain/models/goals/physical_goal_read.dart';
+import 'package:fit_healthy/domain/utils/constants/suggestions_titles_constant.dart';
 import 'package:fit_healthy/domain/utils/enums/goals_enum.dart';
 import 'package:fit_healthy/domain/utils/themes/color_theme.dart';
 import 'package:fit_healthy/ui/goals/widgets/goal_item_card_widget.dart';
@@ -5,6 +9,7 @@ import 'package:fit_healthy/ui/shared/app_input_decoration.dart';
 import 'package:fit_healthy/ui/shared/app_filled_button.dart';
 import 'package:fit_healthy/ui/shared/title_page_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class PhysicalGoalsCreate extends StatefulWidget {
   const PhysicalGoalsCreate({Key? key}) : super(key: key);
@@ -20,6 +25,19 @@ class _PhysicalGoalsCreateState extends State<PhysicalGoalsCreate> {
 
   @override
   Widget build(BuildContext context) {
+    final _goalForm = Provider.of<GoalFormProvider>(context);
+    final _goalProv = Provider.of<GoalsProvider>(context);
+
+    late PhysicalGoalRead responseGoalRead = PhysicalGoalRead(
+        calories: 0,
+        cardioPoints: 0,
+        completed: '',
+        description: '',
+        frequency: '',
+        id: 0,
+        kilometers: 0.0,
+        steps: 1);
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -81,34 +99,53 @@ class _PhysicalGoalsCreateState extends State<PhysicalGoalsCreate> {
                                     labelText: '',
                                     fillColor: ComplementPalette.green.shade50),
                                 onChanged: (value) {
-                                  setState(() {
+                                  _goalForm.buildPhysicalGoalCreate(
+                                      frequency: frecuencies[value]);
+                                  /*setState(() {
                                     seletedTypeFrecuency = value.toString();
-                                  });
+                                  });*/
                                 }),
                             TextFormField(
                                 decoration: appInputDecoration(
                                     labelText: '',
                                     fillColor:
                                         Theme.of(context).colorScheme.surface),
-                                autocorrect: false),
+                                autocorrect: false,
+                                keyboardType: TextInputType.number,
+                                onChanged: (value) =>
+                                    _goalForm.buildPhysicalGoalCreate(
+                                        steps: int.parse(value))),
                             TextFormField(
-                                decoration: appInputDecoration(
-                                    labelText: 'Km',
-                                    fillColor:
-                                        Theme.of(context).colorScheme.surface),
-                                autocorrect: false),
+                              decoration: appInputDecoration(
+                                  labelText: 'Km',
+                                  fillColor:
+                                      Theme.of(context).colorScheme.surface),
+                              autocorrect: false,
+                              keyboardType: TextInputType.number,
+                              onChanged: (value) =>
+                                  _goalForm.buildPhysicalGoalCreate(
+                                      kilometers: double.parse(value)),
+                            ),
                             TextFormField(
                                 decoration: appInputDecoration(
                                     labelText: 'Pts cardio',
                                     fillColor:
                                         Theme.of(context).colorScheme.surface),
-                                autocorrect: false),
+                                autocorrect: false,
+                                keyboardType: TextInputType.number,
+                                onChanged: (value) =>
+                                    _goalForm.buildPhysicalGoalCreate(
+                                        cardioPoints: int.parse(value))),
                             TextFormField(
                                 decoration: appInputDecoration(
                                     labelText: 'Kcal',
                                     fillColor:
                                         Theme.of(context).colorScheme.surface),
-                                autocorrect: false),
+                                autocorrect: false,
+                                keyboardType: TextInputType.number,
+                                onChanged: (value) =>
+                                    _goalForm.buildPhysicalGoalCreate(
+                                        calories: double.parse(value))),
                           ],
                         ),
                       ),
@@ -118,18 +155,29 @@ class _PhysicalGoalsCreateState extends State<PhysicalGoalsCreate> {
                 const SizedBox(height: 20),
                 AppFilledButton(
                   text: 'Guardar Objetivo',
-                  onPressed: () {},
+                  onPressed: () async {
+                    print(
+                        '====physicalGoalCreate ${_goalForm.physicalGoalCreate.toString()}');
+                    responseGoalRead = await _goalProv
+                        .postPhysicalGoal(_goalForm.physicalGoalCreate);
+                    setState(() {});
+                  },
                   color: ComplementPalette.green.shade700,
                 ),
                 const SizedBox(height: 20),
-                const GoalItemCardWidget(
-                  typeGoal: TypeGoal.physical,
-                  steps: 480,
-                  kilometers: 3,
-                  cardioPoints: 48,
-                  calories: 458,
-                  isCreated: true,
-                )
+                if (_goalProv.isLoading == false && _goalProv.mostrarCuadro)
+                  GoalItemCardWidget(
+                    typeGoal: TypeGoal.physical,
+                    frequency: responseGoalRead.frequency,
+                    steps: responseGoalRead.steps,
+                    kilometers: responseGoalRead.kilometers,
+                    cardioPoints: responseGoalRead.cardioPoints,
+                    calories: responseGoalRead.calories,
+                    goalCompleted: responseGoalRead.completed == 'No completado'
+                        ? false
+                        : true,
+                    isCreated: true,
+                  )
               ],
             ),
           ),
