@@ -4,6 +4,7 @@ import 'package:fit_healthy/business/form/form_provider.dart';
 import 'package:fit_healthy/business/form/signup_form_provider.dart';
 import 'package:fit_healthy/business/goals/goals_provider.dart';
 import 'package:fit_healthy/business/iot/iot_provider.dart';
+import 'package:fit_healthy/business/shared/goal_form_provider.dart';
 import 'package:fit_healthy/business/shared/navigation_provider.dart';
 import 'package:fit_healthy/business/suggestion/suggestion_provider.dart';
 import 'package:fit_healthy/domain/utils/themes/color_theme.dart';
@@ -37,8 +38,12 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
             create: (_) => SuggestionProvider(SuggestionRepository())),
         ChangeNotifierProvider(create: (_) => FormProvider(FormRepository())),
+<<<<<<< HEAD
         ChangeNotifierProvider(create: (_) => SignUpFormProvider()),
         ChangeNotifierProvider(create: (_) => SignUpProvider(AuthRepository())),
+=======
+        Provider(create: (_) => GoalFormProvider()),
+>>>>>>> feature/forms
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

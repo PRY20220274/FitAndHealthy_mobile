@@ -6,6 +6,7 @@ class GoalItemCardWidget extends StatelessWidget {
   const GoalItemCardWidget({
     Key? key,
     //required this.goalTitle,
+    this.frequency,
     this.steps,
     this.kilometers,
     this.cardioPoints,
@@ -20,6 +21,7 @@ class GoalItemCardWidget extends StatelessWidget {
   }) : super(key: key);
 
   //final String goalTitle;
+  final String? frequency;
   final int? steps;
   final double? kilometers;
   final int? cardioPoints;
@@ -61,6 +63,8 @@ class GoalItemCardWidget extends StatelessWidget {
                         style: const TextStyle(fontWeight: FontWeight.w500),
                       ),
                     ),
+                    Text('Descripción: $description'),
+                    Text('Frecuencia: $frequency'),
                     Text('Pasos: $steps pasos'),
                     Text('Kilómetros: ${kilometers!.toStringAsFixed(2)} km'),
                     Text('Puntos cardio: $cardioPoints pts'),
