@@ -28,21 +28,12 @@ class _PhysicalGoalsCreateState extends State<PhysicalGoalsCreate> {
     final _goalForm = Provider.of<GoalFormProvider>(context);
     final _goalProv = Provider.of<GoalsProvider>(context);
 
-    late PhysicalGoalRead responseGoalRead = PhysicalGoalRead(
-        calories: 0,
-        cardioPoints: 0,
-        completed: '',
-        description: '',
-        frequency: '',
-        id: 0,
-        kilometers: 0.0,
-        steps: 1);
-
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios),
           onPressed: () {
+            _goalProv.reset();
             Navigator.pop(context);
           },
         ),
@@ -156,11 +147,11 @@ class _PhysicalGoalsCreateState extends State<PhysicalGoalsCreate> {
                 AppFilledButton(
                   text: 'Guardar Objetivo',
                   onPressed: () async {
+                    FocusManager.instance.primaryFocus?.unfocus();
                     print(
                         '====physicalGoalCreate ${_goalForm.physicalGoalCreate.toString()}');
-                    responseGoalRead = await _goalProv
+                    await _goalProv
                         .postPhysicalGoal(_goalForm.physicalGoalCreate);
-                    setState(() {});
                   },
                   color: ComplementPalette.green.shade700,
                 ),
@@ -168,14 +159,16 @@ class _PhysicalGoalsCreateState extends State<PhysicalGoalsCreate> {
                 if (_goalProv.isLoading == false && _goalProv.mostrarCuadro)
                   GoalItemCardWidget(
                     typeGoal: TypeGoal.physical,
-                    frequency: responseGoalRead.frequency,
-                    steps: responseGoalRead.steps,
-                    kilometers: responseGoalRead.kilometers,
-                    cardioPoints: responseGoalRead.cardioPoints,
-                    calories: responseGoalRead.calories,
-                    goalCompleted: responseGoalRead.completed == 'No completado'
-                        ? false
-                        : true,
+                    description: _goalProv.physicalGoalRead.description,
+                    frequency: _goalProv.physicalGoalRead.frequency,
+                    steps: _goalProv.physicalGoalRead.steps,
+                    kilometers: _goalProv.physicalGoalRead.kilometers,
+                    cardioPoints: _goalProv.physicalGoalRead.cardioPoints,
+                    calories: _goalProv.physicalGoalRead.calories,
+                    goalCompleted:
+                        _goalProv.physicalGoalRead.completed == 'No completado'
+                            ? false
+                            : true,
                     isCreated: true,
                   )
               ],

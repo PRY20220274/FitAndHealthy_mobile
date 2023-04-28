@@ -15,11 +15,21 @@ class GoalsProvider extends ChangeNotifier {
   late bool _mostrarCuadro = false;
 
   late List<PhysicalNutricionalGoal> _allGoals = [];
+  late PhysicalGoalRead _physicalGoalRead = PhysicalGoalRead(
+      calories: 0.0,
+      cardioPoints: 0,
+      completed: '',
+      description: '',
+      frequency: '',
+      id: 0,
+      kilometers: 0.0,
+      steps: 0);
 
   bool get isLoading => _isLoading;
   String get errorMessage => _errorMessage;
   List<PhysicalNutricionalGoal> get allGoals => _allGoals;
   bool get mostrarCuadro => _mostrarCuadro;
+  PhysicalGoalRead get physicalGoalRead => _physicalGoalRead;
 
   Future<List<PhysicalNutricionalGoal>> getAllGoals() async {
     try {
@@ -50,7 +60,7 @@ class GoalsProvider extends ChangeNotifier {
       _isLoading = false;
       _mostrarCuadro = true;
       print('====post  $result');
-
+      _physicalGoalRead = result;
       notifyListeners();
       return result;
     } on DioError catch (err) {
@@ -59,5 +69,18 @@ class GoalsProvider extends ChangeNotifier {
       notifyListeners();
       rethrow;
     }
+  }
+
+  void reset() {
+    _mostrarCuadro = false;
+    _physicalGoalRead = PhysicalGoalRead(
+        calories: 0.0,
+        cardioPoints: 0,
+        completed: '',
+        description: '',
+        frequency: '',
+        id: 0,
+        kilometers: 0.0,
+        steps: 0);
   }
 }
