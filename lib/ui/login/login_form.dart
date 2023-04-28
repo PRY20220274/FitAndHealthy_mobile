@@ -1,6 +1,7 @@
 import 'package:fit_healthy/business/auth/auth_provider.dart';
 import 'package:fit_healthy/business/goals/goals_provider.dart';
 import 'package:fit_healthy/business/iot/iot_provider.dart';
+import 'package:fit_healthy/business/shared/types_provider.dart';
 import 'package:fit_healthy/business/suggestion/suggestion_provider.dart';
 import 'package:fit_healthy/domain/models/auth/user_login.dart';
 import 'package:fit_healthy/ui/main/main_page.dart';
@@ -57,6 +58,7 @@ class LogInform extends StatelessWidget {
                         .getAllGoals();
                     Provider.of<IotProvider>(context, listen: false).getPhysicalData();
                     Provider.of<SuggestionProvider>(context, listen: false).getSuggestionsToday();
+                    Provider.of<TypesProvider>(context, listen: false).getAllTypes();
 
                     Navigator.pushReplacement(
                         context,
