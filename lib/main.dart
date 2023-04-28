@@ -3,9 +3,11 @@ import 'package:fit_healthy/business/auth/signup_provider.dart';
 import 'package:fit_healthy/business/form/form_provider.dart';
 import 'package:fit_healthy/business/form/signup_form_provider.dart';
 import 'package:fit_healthy/business/goals/goals_provider.dart';
+import 'package:fit_healthy/business/goals/nutritional_goal_provider.dart';
 import 'package:fit_healthy/business/iot/iot_provider.dart';
 import 'package:fit_healthy/business/shared/goal_form_provider.dart';
 import 'package:fit_healthy/business/shared/navigation_provider.dart';
+import 'package:fit_healthy/business/shared/types_provider.dart';
 import 'package:fit_healthy/business/suggestion/suggestion_provider.dart';
 import 'package:fit_healthy/domain/utils/themes/color_theme.dart';
 import 'package:fit_healthy/persistence/remote/implements/form_repository.dart';
@@ -13,6 +15,7 @@ import 'package:fit_healthy/persistence/remote/implements/iot_repository.dart';
 import 'package:fit_healthy/persistence/remote/implements/auth_repository.dart';
 import 'package:fit_healthy/persistence/remote/implements/goals_repository.dart';
 import 'package:fit_healthy/persistence/remote/implements/suggestion_repository.dart';
+import 'package:fit_healthy/persistence/remote/implements/types_repository.dart';
 import 'package:fit_healthy/ui/login/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -41,6 +44,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => SignUpFormProvider()),
         ChangeNotifierProvider(create: (_) => SignUpProvider(AuthRepository())),
         Provider(create: (_) => GoalFormProvider()),
+        ChangeNotifierProvider(create: (_) => TypesProvider(TypesRepository())),
+        ChangeNotifierProvider(create: (_) => NutritionalGoalProvider(GoalsRepository())),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:fit_healthy/domain/models/goals/physical_goal_read.dart';
 import 'package:fit_healthy/domain/models/goals/physical_goal_create.dart';
+import 'package:fit_healthy/domain/models/goals/nutritional_goal_read.dart';
+import 'package:fit_healthy/domain/models/goals/nutritional_goal_create.dart';
 import 'package:fit_healthy/domain/models/goals/physical_nutricional_goal.dart';
 import 'package:fit_healthy/domain/utils/constants/api_constants.dart';
 import 'package:fit_healthy/domain/utils/enums/goals_enum.dart';
@@ -73,6 +75,32 @@ class GoalsRepository extends BaseGoals {
       final physicalGoalRead = PhysicalGoalRead.fromMap(response.data);
       return physicalGoalRead;
     } on DioError catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<NutritionalGoalRead> postNutritionalGoal(
+      NutritionalGoalCreate goal) async {
+    try {
+      const url = _baseUrl + '/motivations-api/food-goals';
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      final token = prefs.getString('token');
+
+      final request = goal.toJson();
+      final response = await _dio.post(
+        url,
+        data: request,
+        options: Options(headers: {'Authorization': 'Bearer $token'}),
+      );
+
+      if (response.statusCode != 201) {
+        throw Exception(response.statusCode);
+      }
+
+      final nutritionalGoal = NutritionalGoalRead.fromMap(response.data);
+      return nutritionalGoal;
+    } on Exception catch (_) {
       rethrow;
     }
   }
