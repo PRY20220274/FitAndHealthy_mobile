@@ -73,13 +73,6 @@ class _PhysicalGoalsCreateState extends State<PhysicalGoalsCreate> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            /*TextFormField(
-                                decoration: appInputDecoration(
-                                    labelText: '',
-                                    fillColor: Theme.of(context)
-                                        .colorScheme
-                                        .secondary),
-                                autocorrect: false),*/
                             DropdownButtonFormField(
                                 items: typesFrecuency.map((item) {
                                   return DropdownMenuItem(
@@ -92,9 +85,6 @@ class _PhysicalGoalsCreateState extends State<PhysicalGoalsCreate> {
                                 onChanged: (value) {
                                   _goalForm.buildPhysicalGoalCreate(
                                       frequency: frecuencies[value]);
-                                  /*setState(() {
-                                    seletedTypeFrecuency = value.toString();
-                                  });*/
                                 }),
                             TextFormField(
                                 decoration: appInputDecoration(
