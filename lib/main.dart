@@ -38,12 +38,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
             create: (_) => SuggestionProvider(SuggestionRepository())),
         ChangeNotifierProvider(create: (_) => FormProvider(FormRepository())),
-<<<<<<< HEAD
         ChangeNotifierProvider(create: (_) => SignUpFormProvider()),
         ChangeNotifierProvider(create: (_) => SignUpProvider(AuthRepository())),
-=======
         Provider(create: (_) => GoalFormProvider()),
->>>>>>> feature/forms
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
