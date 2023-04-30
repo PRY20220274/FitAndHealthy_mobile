@@ -1,5 +1,6 @@
 import 'package:fit_healthy/business/form/form_provider.dart';
 import 'package:fit_healthy/ui/forms/widgets/question_widget.dart';
+import 'package:fit_healthy/ui/shared/app_filled_button.dart';
 import 'package:fit_healthy/ui/shared/title_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -10,6 +11,7 @@ class FormDrinksPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _form = Provider.of<FormProvider>(context).formRead;
+    final _formProvider = Provider.of<FormProvider>(context, listen: false);
 
     return Scaffold(
       appBar: AppBar(
@@ -34,7 +36,21 @@ class FormDrinksPage extends StatelessWidget {
                       ..._form.questions.map((e) {
                         int index = _form.questions.indexOf(e);
                         return QuestionWidget(question: e, index: index);
-                      })
+                      }),
+                      AppFilledButton(
+                          text: 'Guardar Respuestas',
+                          onPressed: () async {
+                            _formProvider.questionnaireCreate.questionnaire =
+                                _form.id;
+                            _formProvider.questionnaireCreate.answers =
+                                _formProvider.answers
+                                    .sublist(0, _form.questions.length);
+                            await _formProvider.postQuestionnaire(
+                                _formProvider.questionnaireCreate);
+
+                            _formProvider.setformRead(null);
+                            Navigator.pop(context);
+                          })
                     ],
                   )
                 : const Text('Cargando...')),
