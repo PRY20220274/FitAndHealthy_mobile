@@ -55,10 +55,8 @@ class GoalCardWidget extends StatelessWidget {
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          bottomLeft: Radius.circular(10),
-                        ),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(10)),
                         color: ComplementPalette.green.shade400,
                       ),
                       height: 40,
@@ -66,7 +64,7 @@ class GoalCardWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                Expanded(
+                /*Expanded(
                   child: InkWell(
                     onTap: () {
                       Navigator.push(
@@ -89,7 +87,7 @@ class GoalCardWidget extends StatelessWidget {
                       child: const Center(child: Text('Ver')),
                     ),
                   ),
-                )
+                )*/
               ],
             ),
           ],
