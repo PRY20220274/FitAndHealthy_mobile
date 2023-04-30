@@ -1,14 +1,11 @@
 import 'package:fit_healthy/business/auth/signup_provider.dart';
 import 'package:fit_healthy/business/form/signup_form_provider.dart';
-import 'package:fit_healthy/business/iot/iot_provider.dart';
 import 'package:fit_healthy/business/web_view/google_fit_web_view_provider.dart';
-import 'package:fit_healthy/ui/main/main_page.dart';
 import 'package:fit_healthy/ui/shared/app_filled_button.dart';
 import 'package:fit_healthy/ui/shared/app_input_decoration.dart';
 import 'package:fit_healthy/ui/shared/transition_page_route.dart';
 import 'package:fit_healthy/ui/web_view/google_fit_web_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 import 'package:provider/provider.dart';
 
 class SignUpForm extends StatefulWidget {
@@ -171,22 +168,22 @@ class _SignUpFormState extends State<SignUpForm> {
                         textAlign: TextAlign.center)),
                 const SizedBox(height: 18),
                 AppFilledButton(
-                    text: 'Aceptar',
-                    onPressed: () {
-                      Provider.of<GoogleFiWebViewProvider>(
-                        context,
-                        listen: false,
-                      ).initialize();
+                  text: 'Aceptar',
+                  onPressed: () {
+                    Provider.of<GoogleFiWebViewProvider>(
+                      context,
+                      listen: false,
+                    ).initialize();
 
-                      Navigator.pushReplacement(
-                          context,
-                          TransitionPageRoute(
-                              //child: const MainPage(),
-                              child: const GoogleFitWebViewPage(),
-                              direction: AxisDirection.left));
-                      /*Navigator.of(context).pop();
-                      _launchURL(context);*/
-                    })
+                    Navigator.pushReplacement(
+                      context,
+                      TransitionPageRoute(
+                        child: const GoogleFitWebViewPage(),
+                        direction: AxisDirection.left,
+                      ),
+                    );
+                  },
+                )
               ],
             ),
           ),
