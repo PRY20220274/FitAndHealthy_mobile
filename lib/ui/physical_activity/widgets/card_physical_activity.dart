@@ -33,7 +33,7 @@ class CardPhysicalActivity extends StatelessWidget {
         color: Palette.green.shade50,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 12.0),
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,

@@ -155,7 +155,7 @@ class HomePage extends StatelessWidget {
         return AlertDialog(
           contentPadding: EdgeInsets.zero,
           content: SizedBox(
-            height: 365,
+            height: 370,
             width: 400,
             child: Form(
               key: _formKey,
@@ -181,7 +181,7 @@ class HomePage extends StatelessWidget {
                         Expanded(
                           flex: 1,
                           child: SizedBox(
-                            height: 175,
+                            height: 180,
                             //width: 1,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -198,9 +198,9 @@ class HomePage extends StatelessWidget {
                           width: 20,
                         ),
                         Flexible(
-                          flex: 2,
+                          flex: 3,
                           child: SizedBox(
-                            height: 175,
+                            height: 180,
                             //width: 150,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,

@@ -19,8 +19,10 @@ class LogInPage extends StatelessWidget {
                     fit: BoxFit.contain, width: size.width * 0.25),
               ),
               const SizedBox(height: 12),
-              Text('Bienvenidos a Fit and Healthy',
-                  style: Theme.of(context).textTheme.headline5),
+              Text(
+                'Bienvenidos a Fit and Healthy',
+                style: Theme.of(context).textTheme.headline5,
+              ),
               const SizedBox(height: 12),
               Container(
                 alignment: Alignment.center,
@@ -32,7 +34,7 @@ class LogInPage extends StatelessWidget {
                 child: Column(
                   children: const [
                     Text(
-                      'Iniciar Sesion',
+                      'Iniciar Sesión',
                       style:
                           TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                     ),

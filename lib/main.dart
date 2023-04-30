@@ -10,6 +10,7 @@ import 'package:fit_healthy/business/shared/navigation_provider.dart';
 import 'package:fit_healthy/business/shared/types_provider.dart';
 import 'package:fit_healthy/business/suggestion/suggestion_provider.dart';
 import 'package:fit_healthy/business/userdata/user_data_provider.dart';
+import 'package:fit_healthy/business/web_view/google_fit_web_view_provider.dart';
 import 'package:fit_healthy/domain/utils/themes/color_theme.dart';
 import 'package:fit_healthy/persistence/remote/implements/form_repository.dart';
 import 'package:fit_healthy/persistence/remote/implements/iot_repository.dart';
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => TypesProvider(TypesRepository())),
         ChangeNotifierProvider(create: (_) => NutritionalGoalProvider(GoalsRepository())),
         ChangeNotifierProvider(create: (_) => UserDataProvider(UserDataRepository())),
+        ChangeNotifierProvider(create: (_) => GoogleFiWebViewProvider(IotRepository())),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

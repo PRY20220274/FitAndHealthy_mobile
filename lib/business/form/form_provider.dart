@@ -12,7 +12,7 @@ class FormProvider extends ChangeNotifier {
   late bool _isLoading = false;
   late String _errorMessage = '';
 
-  late FormRead? _formRead;
+  late FormRead? _formRead = null;
   late QuestionnaireRead _questionnaireRead =
       QuestionnaireRead(id: 0, scale: '', score: 0);
   late List<int> _answers = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];

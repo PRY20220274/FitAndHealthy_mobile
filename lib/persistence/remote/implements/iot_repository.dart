@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:fit_healthy/domain/models/iot/google_access_data.dart';
 import 'package:fit_healthy/domain/models/iot/user_physical_data.dart';
 import 'package:fit_healthy/domain/utils/constants/api_constants.dart';
 import 'package:fit_healthy/persistence/remote/interfaces/base_iot_repository.dart';
@@ -22,6 +23,26 @@ class IotRepository extends BaseIotRepository {
 
       final userPhysicalData = UserPhysicalData.fromMap(response.data);
       return userPhysicalData;
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<String> getGoogleAuthenticationUrl() async {
+    try {
+      const url = _baseUrl + '/fit-api/iot/authentication-url';
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      final token = prefs.getString('token');
+
+      final response = await _dio.get(
+        url,
+        options: Options(headers: {'Authorization': 'Bearer $token'}),
+      );
+
+      final data = GoogleAccessData.fromMap(response.data);
+
+      return data.url;
     } on Exception catch (_) {
       rethrow;
     }

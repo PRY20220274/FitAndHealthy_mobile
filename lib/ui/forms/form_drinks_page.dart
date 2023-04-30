@@ -27,33 +27,36 @@ class FormDrinksPage extends StatelessWidget {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-            child: _form != null
-                ? Column(
-                    children: [
-                      TitlePageWidget(
-                        title: _form.name,
-                      ),
-                      ..._form.questions.map((e) {
-                        int index = _form.questions.indexOf(e);
-                        return QuestionWidget(question: e, index: index);
-                      }),
-                      AppFilledButton(
-                          text: 'Guardar Respuestas',
-                          onPressed: () async {
-                            _formProvider.questionnaireCreate.questionnaire =
-                                _form.id;
-                            _formProvider.questionnaireCreate.answers =
-                                _formProvider.answers
-                                    .sublist(0, _form.questions.length);
-                            await _formProvider.postQuestionnaire(
-                                _formProvider.questionnaireCreate);
+          child: _form != null
+              ? Column(
+                  children: [
+                    TitlePageWidget(
+                      title: _form.name,
+                    ),
+                    ..._form.questions.map((e) {
+                      int index = _form.questions.indexOf(e);
+                      return QuestionWidget(question: e, index: index);
+                    }),
+                    AppFilledButton(
+                      text: 'Guardar Respuestas',
+                      onPressed: () async {
+                        _formProvider.questionnaireCreate.questionnaire =
+                            _form.id;
+                        _formProvider.questionnaireCreate.answers =
+                            _formProvider.answers
+                                .sublist(0, _form.questions.length);
+                        await _formProvider.postQuestionnaire(
+                            _formProvider.questionnaireCreate);
 
-                            _formProvider.setformRead(null);
-                            Navigator.pop(context);
-                          })
-                    ],
-                  )
-                : const Text('Cargando...')),
+                        _formProvider.setformRead(null);
+                        Navigator.pop(context);
+                      },
+                    ),
+                    const SizedBox(height: 20),
+                  ],
+                )
+              : const Center(child: CircularProgressIndicator()),
+        ),
       ),
     );
   }

@@ -50,30 +50,33 @@ class LogInform extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 24),
-              AppFilledButton(
-                  text: 'Iniciar Sesion',
-                  onPressed: () async {
-                    FocusManager.instance.primaryFocus?.unfocus();
+              if (authProvider.isLoading)
+                const Center(child: CircularProgressIndicator()),
+              if (!authProvider.isLoading)
+                AppFilledButton(
+                    text: 'Iniciar Sesión',
+                    onPressed: () async {
+                      FocusManager.instance.primaryFocus?.unfocus();
 
-                    await authProvider.signIn(_userLogin);
+                      await authProvider.signIn(_userLogin);
 
-                    Provider.of<GoalsProvider>(context, listen: false)
-                        .getAllGoals();
-                    Provider.of<IotProvider>(context, listen: false)
-                        .getPhysicalData();
-                    Provider.of<SuggestionProvider>(context, listen: false)
-                        .getSuggestionsToday();
-                    Provider.of<SuggestionProvider>(context, listen: false)
-                        .getAllSuggestions();
-                    Provider.of<TypesProvider>(context, listen: false)
-                        .getAllTypes();
+                      Provider.of<GoalsProvider>(context, listen: false)
+                          .getAllGoals();
+                      Provider.of<IotProvider>(context, listen: false)
+                          .getPhysicalData();
+                      Provider.of<SuggestionProvider>(context, listen: false)
+                          .getSuggestionsToday();
+                      Provider.of<SuggestionProvider>(context, listen: false)
+                          .getAllSuggestions();
+                      Provider.of<TypesProvider>(context, listen: false)
+                          .getAllTypes();
 
-                    Navigator.pushReplacement(
-                        context,
-                        TransitionPageRoute(
-                            child: const MainPage(),
-                            direction: AxisDirection.left));
-                  }),
+                      Navigator.pushReplacement(
+                          context,
+                          TransitionPageRoute(
+                              child: const MainPage(),
+                              direction: AxisDirection.left));
+                    }),
               const SizedBox(height: 72),
               const Padding(
                 padding: EdgeInsets.all(8.0),
@@ -82,13 +85,16 @@ class LogInform extends StatelessWidget {
               AppFilledButton(
                   text: 'Crea tu cuenta',
                   onPressed: () {
-                    FocusManager.instance.primaryFocus?.unfocus();
+                    if (!authProvider.isLoading) {
+                      FocusManager.instance.primaryFocus?.unfocus();
 
-                    Navigator.push(
+                      Navigator.push(
                         context,
                         TransitionPageRoute(
                             child: const SignUpPage(),
-                            direction: AxisDirection.left));
+                            direction: AxisDirection.left),
+                      );
+                    }
                   }),
             ],
           ));
