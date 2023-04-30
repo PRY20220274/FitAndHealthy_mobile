@@ -34,6 +34,7 @@ class PhysicalStatusInfoTileWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 250,
+      width: 160,
       child: Card(
         //color: BoxFit,//
         color: Palette.green.shade50, //Colors.teal.shade50,
@@ -94,7 +95,7 @@ class PhysicalStatusInfoTileWidget extends StatelessWidget {
                       style: const TextStyle(fontSize: 18),
                     ),
                     const SizedBox(height: 12),
-                    const Text(
+                    if (status != PhysicalStatus.measures) const Text(
                       'Actualización cada 5h',
                       style: TextStyle(fontSize: 12),
                     ),
@@ -126,6 +127,7 @@ class NutritionalStatusInfoTileWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 250,
+      width: 160,
       child: InkWell(
         child: Card(
           //color: BoxFit,//

@@ -1,5 +1,5 @@
 enum PhysicalStatus {
-  weight,
+  measures,
   steps,
   cardio,
   calories,
