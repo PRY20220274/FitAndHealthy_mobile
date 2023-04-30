@@ -84,8 +84,9 @@ class _SignUpFormState extends State<SignUpForm> {
                   });*/
                   signUpFormProvider.buildUserSignUp(birthDate: newDate);
 
-                  dateController.text =
-                      signUpFormProvider.userSignUp.birthDate.toIso8601String().split('T')[0];
+                  dateController.text = signUpFormProvider.userSignUp.birthDate
+                      .toIso8601String()
+                      .split('T')[0];
                 },
                 controller: dateController,
                 //onSaved: ,
@@ -123,15 +124,52 @@ class _SignUpFormState extends State<SignUpForm> {
                   FocusManager.instance.primaryFocus?.unfocus();
                   await signUpProvider.signUp(signUpFormProvider.userSignUp);
 
-                  if (!signUpProvider.isLoading && signUpProvider.userCreated) {
-                    Navigator.pushReplacement(
-                        context,
-                        TransitionPageRoute(
-                            child: const MainPage(),
-                            direction: AxisDirection.left));
-                  }
+                  _showDialogWelcome(context);
                 })
           ],
         ));
+  }
+
+  void _showDialogWelcome(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            contentPadding: EdgeInsets.zero,
+            content: SizedBox(
+              height: 300,
+              width: 400,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(top: 24.0, left: 8, right: 8),
+                    child: Image.asset(
+                      'assets/images/logo.png',
+                      height: 80,
+                    ),
+                  ),
+                  const SizedBox(height: 18),
+                  const Center(
+                      child: Text(
+                          '¡Bienvenid@!\nTe contamos que Fit and Healthy, usa datos de Google Fit, Dale click en aceptar para terminar tu registro.',
+                          textAlign: TextAlign.center)),
+                  const SizedBox(height: 18),
+                  AppFilledButton(
+                      text: 'Aceptar',
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                            context,
+                            TransitionPageRoute(
+                                child: const MainPage(),
+                                direction: AxisDirection.left));
+                      })
+                ],
+              ),
+            ),
+          );
+        });
   }
 }

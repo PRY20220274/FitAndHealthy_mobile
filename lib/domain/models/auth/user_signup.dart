@@ -17,7 +17,6 @@ class UserSignUp {
     required this.birthDate,
   });
 
-
   UserSignUp copyWith({
     String? firstName,
     String? email,
@@ -38,7 +37,7 @@ class UserSignUp {
     final names = firstName.split(' ');
     return <String, dynamic>{
       'first_name': names[0],
-      'last_name': names[1],
+      'last_name': names.length > 1 ? names[1] : names[0],
       'email': email,
       'password': password,
       'genre': gender,
@@ -58,7 +57,8 @@ class UserSignUp {
 
   String toJson() => json.encode(toMap());
 
-  factory UserSignUp.fromJson(String source) => UserSignUp.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory UserSignUp.fromJson(String source) =>
+      UserSignUp.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -68,21 +68,20 @@ class UserSignUp {
   @override
   bool operator ==(covariant UserSignUp other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.firstName == firstName &&
-      other.email == email &&
-      other.password == password &&
-      other.gender == gender &&
-      other.birthDate == birthDate;
+
+    return other.firstName == firstName &&
+        other.email == email &&
+        other.password == password &&
+        other.gender == gender &&
+        other.birthDate == birthDate;
   }
 
   @override
   int get hashCode {
     return firstName.hashCode ^
-      email.hashCode ^
-      password.hashCode ^
-      gender.hashCode ^
-      birthDate.hashCode;
+        email.hashCode ^
+        password.hashCode ^
+        gender.hashCode ^
+        birthDate.hashCode;
   }
 }
