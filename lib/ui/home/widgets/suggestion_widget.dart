@@ -16,7 +16,7 @@ class SuggestionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 120,
+      //height: 120,
       child: Column(children: [
         Text(
           suggestionsTitles[typeSuggestion]!,

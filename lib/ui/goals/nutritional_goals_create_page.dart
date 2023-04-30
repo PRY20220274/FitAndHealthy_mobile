@@ -1,4 +1,3 @@
-import 'package:fit_healthy/business/goals/goals_provider.dart';
 import 'package:fit_healthy/business/goals/nutritional_goal_provider.dart';
 import 'package:fit_healthy/business/shared/types_provider.dart';
 import 'package:fit_healthy/domain/models/types/activity.dart';

@@ -123,13 +123,19 @@ class HomePage extends StatelessWidget {
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                 ),
               ),
-              SuggestionWidget(
-                typeSuggestion: TypeSuggestion.physical,
-                description: physicalSuggestion.description,
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                child: SuggestionWidget(
+                  typeSuggestion: TypeSuggestion.physical,
+                  description: physicalSuggestion.description,
+                ),
               ),
-              SuggestionWidget(
-                typeSuggestion: TypeSuggestion.nutritional,
-                description: nutritionalSuggestion.description,
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                child: SuggestionWidget(
+                  typeSuggestion: TypeSuggestion.nutritional,
+                  description: nutritionalSuggestion.description,
+                ),
               ),
               //const SizedBox(height: 48,)
             ],

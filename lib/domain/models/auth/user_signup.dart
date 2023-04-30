@@ -38,7 +38,7 @@ class UserSignUp {
     final names = firstName.split(' ');
     return <String, dynamic>{
       'first_name': names[0],
-      'last_name': names[1],
+      'last_name': names.length > 1 ? names[1] : names[0],
       'email': email,
       'password': password,
       'genre': gender,

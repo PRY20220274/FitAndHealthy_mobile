@@ -53,12 +53,20 @@ class LogInform extends StatelessWidget {
               AppFilledButton(
                   text: 'Iniciar Sesion',
                   onPressed: () async {
+                    FocusManager.instance.primaryFocus?.unfocus();
+
                     await authProvider.signIn(_userLogin);
+
                     Provider.of<GoalsProvider>(context, listen: false)
                         .getAllGoals();
-                    Provider.of<IotProvider>(context, listen: false).getPhysicalData();
-                    Provider.of<SuggestionProvider>(context, listen: false).getSuggestionsToday();
-                    Provider.of<TypesProvider>(context, listen: false).getAllTypes();
+                    Provider.of<IotProvider>(context, listen: false)
+                        .getPhysicalData();
+                    Provider.of<SuggestionProvider>(context, listen: false)
+                        .getSuggestionsToday();
+                    Provider.of<SuggestionProvider>(context, listen: false)
+                        .getAllSuggestions();
+                    Provider.of<TypesProvider>(context, listen: false)
+                        .getAllTypes();
 
                     Navigator.pushReplacement(
                         context,
@@ -75,7 +83,7 @@ class LogInform extends StatelessWidget {
                   text: 'Crea tu cuenta',
                   onPressed: () {
                     FocusManager.instance.primaryFocus?.unfocus();
-                    
+
                     Navigator.push(
                         context,
                         TransitionPageRoute(

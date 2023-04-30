@@ -28,7 +28,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
         children: [
           Text(
             '${widget.index + 1}. ${widget.question.description}',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             //textAlign: TextAlign.right,
           ),
           ...widget.question.alternatives.map(

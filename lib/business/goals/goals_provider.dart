@@ -39,7 +39,6 @@ class GoalsProvider extends ChangeNotifier {
       _isLoading = false;
 
       _allGoals = result;
-      print('====getAllGoals  $_allGoals');
 
       notifyListeners();
       return result;
@@ -59,7 +58,6 @@ class GoalsProvider extends ChangeNotifier {
       final result = await _goalsRepository.postPhysicalGoal(physicalGoal);
       _isLoading = false;
       _mostrarCuadro = true;
-      print('====post  $result');
       _physicalGoalRead = result;
       notifyListeners();
       return result;
