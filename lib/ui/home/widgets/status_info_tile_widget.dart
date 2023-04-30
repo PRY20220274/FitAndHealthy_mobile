@@ -1,10 +1,9 @@
 import 'package:fit_healthy/business/form/form_provider.dart';
 import 'package:fit_healthy/domain/utils/enums/status_enum.dart';
 import 'package:fit_healthy/domain/utils/themes/color_theme.dart';
+import 'package:fit_healthy/ui/shared/transition_page_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '../../shared/transition_page_route.dart';
 
 class PhysicalStatusInfoTileWidget extends StatelessWidget {
   const PhysicalStatusInfoTileWidget({
@@ -32,9 +31,11 @@ class PhysicalStatusInfoTileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return SizedBox(
-      height: 250,
-      width: 180,
+      height: size.height * 0.35,
+      width: size.width * 0.43,
       child: Card(
         //color: BoxFit,//
         color: Palette.green.shade50, //Colors.teal.shade50,
@@ -126,9 +127,11 @@ class NutritionalStatusInfoTileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return SizedBox(
-      height: 250,
-      width: 180,
+      height: size.height * 0.35,
+      width: size.width * 0.43,
       child: InkWell(
         child: Card(
           //color: BoxFit,//

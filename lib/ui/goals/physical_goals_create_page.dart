@@ -1,6 +1,5 @@
 import 'package:fit_healthy/business/goals/goals_provider.dart';
 import 'package:fit_healthy/business/shared/goal_form_provider.dart';
-import 'package:fit_healthy/domain/models/goals/physical_goal_read.dart';
 import 'package:fit_healthy/domain/utils/constants/suggestions_titles_constant.dart';
 import 'package:fit_healthy/domain/utils/enums/goals_enum.dart';
 import 'package:fit_healthy/domain/utils/themes/color_theme.dart';

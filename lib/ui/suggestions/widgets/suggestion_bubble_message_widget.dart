@@ -16,31 +16,47 @@ class SuggestionBubbleMessageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top:8, bottom: 8, left: 8, right: 1),
+      padding: const EdgeInsets.only(top: 8, bottom: 8, left: 8, right: 1),
       child: suggestion == TypeSuggestion.physical
           ? Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(
-                  width: 150,
-                  height: 120,
+                  width: 170,
+                  //height: 140,
                   child: Stack(
                     //fit: StackFit.loose,
                     children: [
                       CustomPaint(
-                        size: const Size(150, 100),
+                        //size: const Size(170, 120),
                         painter: PainterPhysicalSuggestion(),
                         child: SizedBox(
-                          width: 150,
-                          height: 100,
+                          width: 170,
+                          //height: 120,
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(message),
+                            padding: const EdgeInsets.all(4.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    message,
+                                    style: const TextStyle(fontSize: 10),
+                                  ),
+                                ),
+                                const SizedBox(height: 8),
+                                const Padding(
+                                  padding: EdgeInsets.only(right: 24.0),
+                                  child: Icon(Icons.favorite, size: 32),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                         //child: Text('aea'),
                       ),
-                      Positioned(
+                      /*Positioned(
                         bottom: 5,
                         left: 90,
                         child: Icon(
@@ -57,7 +73,7 @@ class SuggestionBubbleMessageWidget extends StatelessWidget {
                           color: Colors.blue.shade700,
                           size: 40,
                         ),
-                      ),
+                      ),*/
                     ],
                   ),
                 ),
@@ -67,24 +83,40 @@ class SuggestionBubbleMessageWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 SizedBox(
-                  width: 150,
-                  height: 120,
+                  width: 170,
+                  //height: 140,
                   child: Stack(
                     children: [
                       CustomPaint(
-                        size: const Size(150, 100),
+                        //size: const Size(170, 120),
                         painter: PainterNutritionalSuggestion(),
                         child: SizedBox(
-                          width: 150,
-                          height: 100,
+                          width: 170,
+                          //height: 120,
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(message),
+                            padding: const EdgeInsets.all(4.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    message,
+                                    style: const TextStyle(fontSize: 10),
+                                  ),
+                                ),
+                                const SizedBox(height: 8),
+                                const Padding(
+                                  padding: EdgeInsets.only(left: 24.0),
+                                  child: Icon(Icons.favorite, size: 32),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                         //child: Text('aea'),
                       ),
-                      Positioned(
+                      /*Positioned(
                         bottom: 5,
                         left: 15,
                         child: Icon(
@@ -101,7 +133,7 @@ class SuggestionBubbleMessageWidget extends StatelessWidget {
                           color: Colors.red.shade400,
                           size: 40,
                         ),
-                      ),
+                      ),*/
                     ],
                   ),
                 ),
@@ -141,13 +173,13 @@ class PainterPhysicalSuggestion extends CustomPainter {
     );
 
     // dibujar linea recta derecha
-    path.lineTo(size.width * 0.95, size.height * 0.9);
+    path.lineTo(size.width * 0.95, size.height * 0.75);
 
     // dibujar curva 1/4 de circulo (segundo cuarto sentido horario)
     path.addArc(
       Rect.fromLTWH(
         size.width * 0.85,
-        size.height * 0.85,
+        size.height * 0.7,
         size.width * 0.1,
         size.height * 0.1,
       ),
@@ -158,31 +190,33 @@ class PainterPhysicalSuggestion extends CustomPainter {
     // path.lineTo(size.width *0.05, size.height * 0.95); BASE
 
     // dibujar linea recta inferior parte 1
-    path.lineTo(size.width * 0.4, size.height * 0.95);
+    path.lineTo(size.width * 0.4, size.height * 0.8);
 
     // curva inferior rara 1
     path.addArc(
       Rect.fromLTWH(
         size.width * 0.05,
-        size.height * 0.80,
+        //size.height * 0.65,
+        60,
         size.width * 0.35,
-        size.height * 0.3,
+        //size.height * 0.3,
+        45,
       ),
       0,
       pi / 2,
     );
 
     // linea rect para volver a la linea recta inferior
-    path.lineTo(size.width * 0.230, size.height * 0.95);
+    path.lineTo(size.width * 0.230, size.height * 0.80);
 
     // dibujar linea recta inferior parte 2
-    path.lineTo(size.width * 0.05, size.height * 0.95);
+    path.lineTo(size.width * 0.05, size.height * 0.80);
 
     // dibujar curva 1/4 de circulo (tercer cuarto sentido horario)
     path.addArc(
       Rect.fromLTWH(
         0,
-        size.height * 0.85,
+        size.height * 0.70,
         size.width * 0.1,
         size.height * 0.1,
       ),
@@ -243,13 +277,13 @@ class PainterNutritionalSuggestion extends CustomPainter {
     );
 
     // dibujar linea recta derecha
-    path.lineTo(size.width * 0.95, size.height * 0.9);
+    path.lineTo(size.width * 0.95, size.height * 0.75);
 
     // dibujar curva 1/4 de circulo (segundo cuarto sentido horario)
     path.addArc(
       Rect.fromLTWH(
         size.width * 0.85,
-        size.height * 0.85,
+        size.height * 0.7,
         size.width * 0.1,
         size.height * 0.1,
       ),
@@ -260,24 +294,26 @@ class PainterNutritionalSuggestion extends CustomPainter {
     // path.lineTo(size.width *0.05, size.height * 0.95); BASE
 
     // dibujar linea recta inferior parte 1
-    path.lineTo(size.width * 0.70, size.height * 0.95);
+    path.lineTo(size.width * 0.70, size.height * 0.8);
 
-    path.lineTo(size.width * 0.70, size.height * 1.1);
+    path.lineTo(size.width * 0.70, size.height * 0.95);
 
     path.addArc(
       Rect.fromLTWH(
         size.width * 0.52,
-        size.height * 0.80,
+        size.height * 0.65,
+        //90,
         size.width * 0.35,
         size.height * 0.3,
+        //45,
       ),
       pi,
       -pi / 2,
     );
 
-    path.moveTo(size.width * 0.51, size.height * 0.95);
+    path.moveTo(size.width * 0.51, size.height * 0.8);
 
-    path.lineTo(size.width * 0.05, size.height * 0.95);
+    path.lineTo(size.width * 0.05, size.height * 0.8);
 
     // curva inferior rara 1
     /*path.addArc(
@@ -301,7 +337,7 @@ class PainterNutritionalSuggestion extends CustomPainter {
     path.addArc(
       Rect.fromLTWH(
         0,
-        size.height * 0.85,
+        size.height * 0.7,
         size.width * 0.1,
         size.height * 0.1,
       ),

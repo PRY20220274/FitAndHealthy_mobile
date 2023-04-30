@@ -1,5 +1,4 @@
 import 'package:fit_healthy/domain/utils/themes/color_theme.dart';
-import 'package:fit_healthy/ui/goals/goals_list_page.dart';
 import 'package:fit_healthy/ui/shared/transition_page_route.dart';
 import 'package:flutter/material.dart';
 

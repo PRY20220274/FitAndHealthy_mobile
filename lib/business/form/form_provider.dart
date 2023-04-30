@@ -12,7 +12,7 @@ class FormProvider extends ChangeNotifier {
   late bool _isLoading = false;
   late String _errorMessage = '';
 
-  late FormRead? _formRead = null;
+  late FormRead? _formRead;
   late QuestionnaireRead _questionnaireRead =
       QuestionnaireRead(id: 0, scale: '', score: 0);
   late List<int> _answers = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -34,7 +34,6 @@ class FormProvider extends ChangeNotifier {
       _isLoading = false;
 
       _formRead = result;
-      print('====getForm  $_formRead');
 
       notifyListeners();
     } on Exception catch (err) {
@@ -75,9 +74,4 @@ class FormProvider extends ChangeNotifier {
     _answers[index] = value;
   }
 
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-  }
 }

@@ -21,7 +21,7 @@ class SignUpProvider extends ChangeNotifier {
       _isLoading = false;
       _userCreated = result;
       notifyListeners();
-    } on Exception catch(err) {
+    } on Exception catch(_) {
       _isLoading = false;
       _userCreated = false;
       notifyListeners();
