@@ -12,3 +12,23 @@ InputDecoration appInputDecoration(
     filled: true,
   );
 }
+
+InputDecoration appInputDecoration2(
+    {required String labelText, required Color fillColor}) {
+  return InputDecoration(
+    labelText: labelText,
+    labelStyle:
+        TextStyle(fontWeight: FontWeight.bold, color: Palette.green.shade200),
+    focusedBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Palette.green.shade200, width: 2),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Palette.green.shade200, width: 2),
+    ),
+    border: OutlineInputBorder(
+      borderSide: BorderSide(color: Palette.green.shade200, width: 2),
+    ),
+    fillColor: fillColor,
+    filled: true,
+  );
+}

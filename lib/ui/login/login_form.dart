@@ -74,6 +74,8 @@ class LogInform extends StatelessWidget {
               AppFilledButton(
                   text: 'Crea tu cuenta',
                   onPressed: () {
+                    FocusManager.instance.primaryFocus?.unfocus();
+                    
                     Navigator.push(
                         context,
                         TransitionPageRoute(
