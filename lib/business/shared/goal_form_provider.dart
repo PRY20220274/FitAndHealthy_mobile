@@ -23,4 +23,37 @@ class GoalFormProvider {
         cardioPoints: cardioPoints,
         calories: calories);
   }
+
+  String? validateCalories(String? value) {
+    if (value == null || value.isEmpty) return 'Campo requerido.';
+
+    const heightRegex = r"""^(?!0*[.,]0*$|[.,]0*$|0*$)\d+[,.]?\d{0,2}$""";
+
+    if (!RegExp(heightRegex).hasMatch(value)) {
+      return 'Calorías inválidas.';
+    } else {
+      return null;
+    }
+  }
+
+  String? validateKilometers(String? value) {
+    if (value == null || value.isEmpty) return 'Campo requerido.';
+
+    const heightRegex = r"""^(?!0*[.,]0*$|[.,]0*$|0*$)\d+[,.]?\d{0,2}$""";
+
+    if (!RegExp(heightRegex).hasMatch(value)) {
+      return 'Kilómetros inválidos.';
+    } else {
+      return null;
+    }
+  }
+
+  String? validateNulls(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Campo requerido.';
+    } else {
+      return null;
+    }
+  }
+
 }
