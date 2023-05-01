@@ -81,4 +81,16 @@ class GoalsProvider extends ChangeNotifier {
         kilometers: 0.0,
         steps: 0);
   }
+
+  void updateGoal(int idGoal) async {
+    try {
+      final goal = _allGoals.firstWhere((e) => e.id == idGoal);
+      goal.completed = goal.completed == 'Completado' ? 'No completado': 'Completado';
+      await _goalsRepository.pathGoalCompleted(idGoal);
+      notifyListeners();
+      return;
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
 }

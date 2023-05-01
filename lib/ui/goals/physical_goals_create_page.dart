@@ -175,6 +175,7 @@ class PhysicalGoalsCreate extends StatelessWidget {
                   const SizedBox(height: 20),
                   if (_goalProv.isLoading == false && _goalProv.mostrarCuadro)
                     GoalItemCardWidget(
+                      id: _goalProv.physicalGoalRead.id,
                       typeGoal: TypeGoal.physical,
                       description: _goalProv.physicalGoalRead.description,
                       frequency: _goalProv.physicalGoalRead.frequency,

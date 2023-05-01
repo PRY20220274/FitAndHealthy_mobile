@@ -12,7 +12,7 @@ class GoalsListPage extends StatelessWidget {
     final allGoals = Provider.of<GoalsProvider>(context).allGoals;
     final Size size = MediaQuery.of(context).size;
 
-    final goalsCompleteMaper = ['Completado', 'No completado'];
+    final goalsCompleteMapper = ['Completado', 'No completado'];
 
     return Scaffold(
       appBar: AppBar(
@@ -43,6 +43,7 @@ class GoalsListPage extends StatelessWidget {
 
                       if (allGoals.isNotEmpty) {
                         return GoalItemCardWidget(
+                          id: goal.id,
                           typeGoal: goal.typeGoal,
                           steps: goal.steps,
                           kilometers: goal.kilometers,
@@ -52,7 +53,7 @@ class GoalsListPage extends StatelessWidget {
                           weight: 45,
                           height: 1.65,
                           typeActivity: goal.activity,
-                          goalCompleted: goal.completed == goalsCompleteMaper[0]
+                          goalCompleted: goal.completed == goalsCompleteMapper[0]
                               ? true
                               : false,
                           isCreated: false,

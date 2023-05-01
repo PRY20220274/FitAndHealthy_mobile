@@ -6,10 +6,10 @@ import 'package:fit_healthy/domain/models/goals/nutritional_goal_create.dart';
 import 'package:fit_healthy/domain/models/goals/physical_nutricional_goal.dart';
 import 'package:fit_healthy/domain/utils/constants/api_constants.dart';
 import 'package:fit_healthy/domain/utils/enums/goals_enum.dart';
-import 'package:fit_healthy/persistence/remote/interfaces/base_goals.dart';
+import 'package:fit_healthy/persistence/remote/interfaces/base_goals_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class GoalsRepository extends BaseGoals {
+class GoalsRepository extends BaseGoalsRepository {
   static const String _baseUrl = AUTH_API;
   static final _dio = Dio();
 
@@ -100,6 +100,26 @@ class GoalsRepository extends BaseGoals {
 
       final nutritionalGoal = NutritionalGoalRead.fromMap(response.data);
       return nutritionalGoal;
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<bool> pathGoalCompleted(int idGoal) async {
+    try {
+      final url = _baseUrl + '/motivations-api/goals/$idGoal/completed';
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      final token = prefs.getString('token');
+
+      final response = await _dio.patch(
+        url,
+        options: Options(headers: {'Authorization': 'Bearer $token'}),
+      );
+
+      if (response.statusCode != 200) return false;
+
+      return true;
     } on Exception catch (_) {
       rethrow;
     }

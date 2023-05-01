@@ -1,11 +1,13 @@
+import 'package:fit_healthy/business/goals/goals_provider.dart';
 import 'package:fit_healthy/domain/utils/enums/goals_enum.dart';
 import 'package:fit_healthy/domain/utils/themes/color_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class GoalItemCardWidget extends StatelessWidget {
   const GoalItemCardWidget({
     Key? key,
-    //required this.goalTitle,
+    required this.id,
     this.frequency,
     this.steps,
     this.kilometers,
@@ -21,6 +23,7 @@ class GoalItemCardWidget extends StatelessWidget {
   }) : super(key: key);
 
   //final String goalTitle;
+  final int id;
   final String? frequency;
   final int? steps;
   final double? kilometers;
@@ -41,7 +44,7 @@ class GoalItemCardWidget extends StatelessWidget {
 
     return SizedBox(
       width: size.width * 0.75,
-      height: 250,
+      height: 255,
       child: Card(
         margin: const EdgeInsets.symmetric(vertical: 12),
         color: typeGoal == TypeGoal.physical
@@ -72,10 +75,30 @@ class GoalItemCardWidget extends StatelessWidget {
                     const SizedBox(height: 12),
                     if (!isCreated)
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           goalCompleted
-                              ? const Text('!Felicidades! objetivo cumplido')
+                              ? IconButton(
+                                icon: Icon(
+                                    Icons.check_box,
+                                    color: Colors.blue.shade600,
+                                  ),
+                                  onPressed: (){},
+                              )
+                              : IconButton(
+                                  icon: Icon(
+                                    Icons.check_box_outline_blank,
+                                    color: Colors.blue.shade600,
+                                  ),
+                                  onPressed: () {
+                                    Provider.of<GoalsProvider>(
+                                      context,
+                                      listen: false,
+                                    ).updateGoal(id);
+                                  },
+                                ),
+                          goalCompleted
+                              ? const Text('¡Felicidades! objetivo cumplido')
                               : const Text('No cumpliste con tu objetivo'),
                         ],
                       ),
@@ -100,10 +123,30 @@ class GoalItemCardWidget extends StatelessWidget {
                     const SizedBox(height: 12),
                     if (!isCreated)
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           goalCompleted
-                              ? const Text('!Felicidades! objetivo cumplido')
+                              ? IconButton(
+                                  icon: Icon(
+                                    Icons.check_box,
+                                    color: Colors.blue.shade600,
+                                  ),
+                                  onPressed: () {},
+                                )
+                              : IconButton(
+                                  icon: Icon(
+                                    Icons.check_box_outline_blank,
+                                    color: Colors.blue.shade600,
+                                  ),
+                                  onPressed: () {
+                                    Provider.of<GoalsProvider>(
+                                      context,
+                                      listen: false,
+                                    ).updateGoal(id);
+                                  },
+                                ),
+                          goalCompleted
+                              ? const Text('¡Felicidades! objetivo cumplido')
                               : const Text('No cumpliste con tu objetivo'),
                         ],
                       ),
