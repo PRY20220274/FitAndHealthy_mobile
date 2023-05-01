@@ -1,6 +1,8 @@
+import 'package:fit_healthy/business/userdata/user_data_provider.dart';
 import 'package:fit_healthy/domain/utils/themes/color_theme.dart';
 import 'package:fit_healthy/domain/utils/utils/date_util.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 
 class ProfileWidget extends StatelessWidget {
@@ -15,6 +17,7 @@ class ProfileWidget extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final DateTime date = DateTime.now();
+    final userName = Provider.of<UserDataProvider>(context).userName;
 
     return Stack(
       fit: StackFit.expand,
@@ -37,12 +40,12 @@ class ProfileWidget extends StatelessWidget {
             radius: 60,
           ),
         ),
-        const Positioned(
+        Positioned(
           left: 155,
           bottom: 40,
           child: Text(
-            'Hola, Maria',
-            style: TextStyle(
+            'Hola, $userName',
+            style: const TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.w500,
             ),

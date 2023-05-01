@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:fit_healthy/domain/models/auth/user_signup.dart';
 import 'package:fit_healthy/domain/models/userdata/measure_update.dart';
 import 'package:fit_healthy/domain/utils/constants/api_constants.dart';
 import 'package:fit_healthy/persistence/remote/interfaces/base_user_data_repository.dart';
@@ -24,6 +25,27 @@ class UserDataRepository extends BaseUserDataRepository {
 
       prefs.setDouble('height', measures.height);
       prefs.setDouble('weight', measures.weight);
+      return;
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> getUserData() async {
+    try {
+      const url = _baseUrl + '/accounts-api/users/id';
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      final token = prefs.getString('token');
+
+      final response = await _dio.get(
+        url,
+        options: Options(headers: {'Authorization': 'Bearer $token'}),
+      );
+
+      final userData = UserSignUp.fromMap(response.data);
+      prefs.setString('userName', userData.firstName);
+      return;
     } on Exception catch (_) {
       rethrow;
     }

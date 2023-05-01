@@ -49,9 +49,9 @@ class UserSignUp {
     return UserSignUp(
       firstName: map['first_name'] as String,
       email: map['email'] as String,
-      password: map['password'] as String,
+      password:'',
       gender: map['genre'] as String,
-      birthDate: DateTime.fromMillisecondsSinceEpoch(map['birth_date'] as int),
+      birthDate: DateFormat('dd/MM/yyyy').parse(map['birth_date']),
     );
   }
 

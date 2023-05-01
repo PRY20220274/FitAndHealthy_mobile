@@ -1,6 +1,7 @@
 import 'package:fit_healthy/domain/models/userdata/measure_update.dart';
 import 'package:fit_healthy/persistence/remote/implements/user_data_repository.dart';
 import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UserDataProvider extends ChangeNotifier {
   final UserDataRepository _userDataRepository;
@@ -8,8 +9,10 @@ class UserDataProvider extends ChangeNotifier {
   UserDataProvider(this._userDataRepository);
 
   MeasureUpdate _measureUpdate = MeasureUpdate(weight: 0, height: 0);
+  String _userName = '';
 
   MeasureUpdate get measureUpdate => _measureUpdate;
+  String get userName => _userName;
 
   Future<void> updateMeasures() async {
     try {
@@ -22,11 +25,23 @@ class UserDataProvider extends ChangeNotifier {
 
   double getIMC() {
     if (_measureUpdate.height == 0) return 0;
-    return _measureUpdate.weight / _measureUpdate.height;
+    return _measureUpdate.weight /
+        (_measureUpdate.height * _measureUpdate.height);
   }
 
   void buildMeasureUpdate({double? height, double? weight}) {
     _measureUpdate = _measureUpdate.copyWith(height: height, weight: weight);
+  }
+
+  Future<void> getUserData() async {
+    try {
+      await _userDataRepository.getUserData();
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      _userName = prefs.getString('userName')!;
+      notifyListeners();
+    } on Exception catch (_) {
+      rethrow;
+    }
   }
 
   String? validateHeight(String? value) {
