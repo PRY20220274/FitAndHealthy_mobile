@@ -22,7 +22,8 @@ class LogInform extends StatelessWidget {
 
     UserLogin _userLogin = UserLogin(email: '', password: '');
 
-    return Consumer<AuthProvider>(builder: (context, authProvider, child) {
+    return Consumer2<AuthProvider, IotProvider>(
+        builder: (context, authProvider, iotProvider, child) {
       return Form(
           key: _formKey,
           child: Column(
@@ -51,22 +52,27 @@ class LogInform extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 24),
-              if (authProvider.isLoading)
+              if (iotProvider.isLoading)
                 const Center(child: CircularProgressIndicator()),
-              if (!authProvider.isLoading)
+              if (!authProvider.isLoading && !iotProvider.isLoading)
                 AppFilledButton(
                     text: 'Iniciar Sesión',
                     onPressed: () async {
                       FocusManager.instance.primaryFocus?.unfocus();
 
+                      iotProvider.isLoading = true;
+
                       await authProvider.signIn(_userLogin);
 
-                      Provider.of<UserDataProvider>(context, listen: false)
+                      await Provider.of<UserDataProvider>(context,
+                              listen: false)
                           .getUserData();
+
+                      await iotProvider.getPhysicalData();
+
                       Provider.of<GoalsProvider>(context, listen: false)
                           .getAllGoals();
-                      Provider.of<IotProvider>(context, listen: false)
-                          .getPhysicalData();
+
                       Provider.of<SuggestionProvider>(context, listen: false)
                           .getSuggestionsToday();
                       Provider.of<SuggestionProvider>(context, listen: false)

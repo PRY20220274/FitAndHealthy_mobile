@@ -7,6 +7,8 @@ class IotProvider extends ChangeNotifier {
 
   IotProvider(this._iotRepository);
 
+  late bool _isLoading = false;
+
   late UserPhysicalData _userPhysicalData = UserPhysicalData(
     id: 0,
     steps: 0,
@@ -18,10 +20,14 @@ class IotProvider extends ChangeNotifier {
   );
 
   UserPhysicalData get userPhysicalData => _userPhysicalData;
+  bool get isLoading => _isLoading;
 
   Future<void> getPhysicalData() async {
     try {
+      _isLoading = true;
+      notifyListeners();
       _userPhysicalData = await _iotRepository.getPhysicalData();
+      _isLoading = false;
       notifyListeners();
     } on Exception catch (_) {
       notifyListeners();
@@ -29,5 +35,7 @@ class IotProvider extends ChangeNotifier {
     }
   }
 
-
+  set isLoading(bool value) {
+    _isLoading = value;
+  }
 }

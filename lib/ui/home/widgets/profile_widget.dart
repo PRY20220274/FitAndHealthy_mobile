@@ -1,9 +1,10 @@
 import 'package:fit_healthy/business/userdata/user_data_provider.dart';
 import 'package:fit_healthy/domain/utils/themes/color_theme.dart';
 import 'package:fit_healthy/domain/utils/utils/date_util.dart';
+import 'package:fit_healthy/ui/login/login_page.dart';
+import 'package:fit_healthy/ui/shared/transition_page_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 
 class ProfileWidget extends StatelessWidget {
   const ProfileWidget({
@@ -15,13 +16,38 @@ class ProfileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final DateTime date = DateTime.now();
     final userName = Provider.of<UserDataProvider>(context).userName;
 
     return Stack(
       fit: StackFit.expand,
       children: [
+        Positioned(
+          top: 10,
+          right: 12,
+          child: PopupMenuButton<String>(
+            onSelected: (value) {
+              if (value == 'signout') {
+                debugPrint('que fue');
+                Navigator.pushReplacement(
+                  context,
+                  TransitionPageRoute(
+                    child: const LogInPage(),
+                    direction: AxisDirection.right,
+                  ),
+                );
+              }
+            },
+            itemBuilder: (ctx) {
+              return const [
+                PopupMenuItem(
+                  child: Text('Cerrar sesión'),
+                  value: 'signout',
+                )
+              ];
+            },
+          ),
+        ),
         Positioned(
           bottom: 30,
           child: Container(
@@ -34,7 +60,7 @@ class ProfileWidget extends StatelessWidget {
           bottom: 0,
           left: 25,
           child: CircleAvatar(
-            backgroundColor: Palette.green.shade50,//Colors.teal.shade100,
+            backgroundColor: Palette.green.shade50, //Colors.teal.shade100,
             backgroundImage:
                 const AssetImage('assets/images/woman_profile.png'),
             radius: 60,
