@@ -29,13 +29,11 @@ class ValorMet extends StatelessWidget {
           ),
           Container(
             alignment: Alignment.centerRight,
-            child: Flexible(
-                flex: 2,
-                child: Text(
-                  '$valueMet MET',
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                  //textAlign: TextAlign.right
-                )),
+            child: Text(
+              '$valueMet MET',
+              style: const TextStyle(fontWeight: FontWeight.bold),
+              //textAlign: TextAlign.right
+            ),
           ),
         ],
       ),
