@@ -56,7 +56,7 @@ class GoogleFitWebViewPage extends StatelessWidget {
     return IconButton(
       icon: const Icon(Icons.close),
       onPressed: () async {
-        provider.getCode(develop: true);
+        provider.getCode(develop: false);
         if (provider.code.length > 1) {
           // borrar
           /*await Provider.of<AuthProvider>(context, listen: false).signIn(UserLogin(
