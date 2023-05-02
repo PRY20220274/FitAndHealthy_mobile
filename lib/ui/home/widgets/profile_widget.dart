@@ -28,7 +28,6 @@ class ProfileWidget extends StatelessWidget {
           child: PopupMenuButton<String>(
             onSelected: (value) {
               if (value == 'signout') {
-                debugPrint('que fue');
                 Navigator.pushReplacement(
                   context,
                   TransitionPageRoute(

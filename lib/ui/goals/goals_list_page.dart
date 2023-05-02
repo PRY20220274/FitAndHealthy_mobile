@@ -1,4 +1,5 @@
 import 'package:fit_healthy/business/goals/goals_provider.dart';
+import 'package:fit_healthy/business/userdata/user_data_provider.dart';
 import 'package:fit_healthy/ui/goals/widgets/goal_item_card_widget.dart';
 import 'package:fit_healthy/ui/shared/title_page_widget.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ class GoalsListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final allGoals = Provider.of<GoalsProvider>(context).allGoals;
+    final measures = Provider.of<UserDataProvider>(context).measureUpdate;
     final Size size = MediaQuery.of(context).size;
 
     final goalsCompleteMapper = ['Completado', 'No completado'];
@@ -50,8 +52,9 @@ class GoalsListPage extends StatelessWidget {
                           cardioPoints: goal.cardioPoints,
                           calories: goal.calories,
                           description: goal.description,
-                          weight: 45,
-                          height: 1.65,
+                          frequency: goal.frequency,
+                          weight: measures.weight,
+                          height: measures.height,
                           typeActivity: goal.activity,
                           goalCompleted: goal.completed == goalsCompleteMapper[0]
                               ? true

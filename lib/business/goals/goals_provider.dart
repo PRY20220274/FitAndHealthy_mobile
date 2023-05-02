@@ -36,10 +36,12 @@ class GoalsProvider extends ChangeNotifier {
       _isLoading = true;
       notifyListeners();
       final result = await _goalsRepository.getAllGoals();
-      _isLoading = false;
+
+      result.sort(sortById);
 
       _allGoals = result;
 
+      _isLoading = false;
       notifyListeners();
       return result;
     } on Exception catch (err) {
@@ -91,6 +93,18 @@ class GoalsProvider extends ChangeNotifier {
       return;
     } on Exception catch (_) {
       rethrow;
+    }
+  }
+
+  int sortById(PhysicalNutricionalGoal a, PhysicalNutricionalGoal b) {
+    final idA = a.id;
+    final idB = b.id;
+    if (idA < idB) {
+      return 1;
+    } else if (idA > idB) {
+      return -1;
+    } else {
+      return 0;
     }
   }
 }
